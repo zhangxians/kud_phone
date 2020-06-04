@@ -177,6 +177,8 @@ return [
 
       //  App\Providers\RepositoryServiceProvider::class, //自定义
 
+        SwooleTW\Http\LaravelServiceProvider::class,
+
     ],
 
     /*
