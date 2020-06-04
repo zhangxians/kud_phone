@@ -1,0 +1,16 @@
+@font-face {
+  font-family: 'edu-iconfont';  /* project id 1588502 */
+  src: url('//at.alicdn.com/t/font_1588502_4zwpk13238k.eot');
+  src: url('//at.alicdn.com/t/font_1588502_4zwpk13238k.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_1588502_4zwpk13238k.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_1588502_4zwpk13238k.woff') format('woff'),
+  url('//at.alicdn.com/t/font_1588502_4zwpk13238k.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_1588502_4zwpk13238k.svg#edu-iconfont') format('svg');
+}
+.edu-iconfont {
+  font-family:"edu-iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

@@ -1,0 +1,98 @@
+/* CSS Document */
+html {height:100%;}
+body {min-height:100%;}
+body {font-family:Helvetica,sans-serif;font-size:14px;padding:0;margin:0;color:#333;}
+a:link {color:#585858;text-decoration:none;}
+a:visited {color:#585858;text-decoration:none;}
+a:hover {color:#ffb300;text-decoration:none;}
+ul,ol,li {margin:0;padding:0;list-style-type:none;}
+dl,dt,dd {margin:0;padding:0;}
+img {border:0;}
+br {font-size:0;line-height:10px;height:10px;}
+
+/* 头部 */
+.top {max-width:980px;_width:980px;height:90px;margin:0 auto;}
+.top .logo{display: inline-block;float: left;height:90px;background:url(/images/logo_black.png) no-repeat left center;width: 260px;}
+.top ul {height:90px;line-height:90px;float:right;margin-right:20px;}
+.top ul li {float:left;margin-left:30px;font-weight:bold;}
+.top ul li a.hover {color:#ffb300;}
+.top ul li a.hover:hover {color:#ff6f00;}
+
+/* 登录主体 */
+.login-main {
+	height:520px;
+	-webkit-background-size:cover;
+	-moz-background-size:cover;
+	-o-background-size:cover;
+	background-size:cover;
+	position:relative;
+}
+.login-main{
+	background:#eee url(/images/login_bg.jpg) center no-repeat;
+	/* 这里src 必须是全路径*/
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='{{asset("/images/login_bg.jpg")}}',sizingMethod='scale');
+}
+.login-main .overlay {z-index:1;position:absolute;bottom:0;top:0;left:0;right:0;background-color:#000;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5;}
+.login-main .login-layer {width:980px;height:520px;margin:0 auto;position:relative;z-index:2;}
+.login-main .login-layer .text {width:450px;margin-left:0;float:left;margin-top:130px;line-height:26px;color:#fff;}
+.login-main .login-layer .login-box {width:354px;/*height:328px;*/min-height:248px;padding-bottom: 30px;background-color:#fff;border-radius:8px;float:right;margin-right:0px;margin-top:100px;color:#999;}
+@media screen and (max-width:980px) {.main .denglu {width:100%;}
+	.login-main .login-layer .text {display:none;}
+	.login-main .login-layer .login-box {min-width:354px;width:auto;position:absolute;right:300px;left:300px;}
+}
+@media screen and (max-width:770px) {.top ul {display:none;}
+	.login-main .login-layer .login-box {min-width:354px;width:auto;position:absolute;right:150px;left:150px;}
+}
+.login-main .login-box-title {text-align:center;font-size:20px;font-weight:normal;color:#666;}
+.login-main .err-msg{font-size: 13px;color:#C00 }
+
+
+a.mm {color:#000;font-size:12px;}
+a.mm:hover {color:#C00;}
+a.zc {color:#fdd100;}
+a.zc:hover {color: #FFC107;font-weight: bold}
+
+
+
+/* 主体 */
+.main-wrapper {
+	padding:20px 0;
+	min-height: 520px;
+	-webkit-background-size:cover;
+	-moz-background-size:cover;
+	-o-background-size:cover;
+	background-size:cover;
+	position:relative;
+}
+.main-wrapper{
+	background:#fff url(/images/main_bg.png) center repeat;
+	background-attachment:fixed;
+	/* 这里src 必须是全路径*/
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='{{asset("/images/main_bg.jpg")}}',sizingMethod='scale');
+}
+.main-wrapper .overlay {z-index:1;position:absolute;bottom:0;top:0;left:0;right:0;background-color: #3b3b3b;filter:alpha(opacity=40);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5;}
+.main-wrapper .panel-wrapper {width: 90vw;max-width: 980px;margin:0 auto;position:relative;z-index:2;}
+.main-wrapper .main-panel{background-color: white;border-radius: 4px;min-height: 200px;border: 1px solid #eee;padding:5px 15px;}
+.main-wrapper .panel-heading{border-bottom: 1px solid #eee;color: #666;font-weight: bold;}
+.main-wrapper .panel-body{padding-top: 5px;}
+.main-wrapper .panel-body li{line-height: 25px;}
+
+
+
+/* 登录底部 */
+.footer {font-size:13px;height:70px;line-height:30px;padding-top: 15px;text-align:center;color:#666;}
+
+
+
+/* button,input */
+.dlinput {margin:0;padding:0;border:1px solid #f2f2f2;width:222px;height:34px;line-height:34px;text-indent:2px;font-size:14px;border-radius:2px;outline:none;}
+.loginbtn {-moz-border-bottom-colors:none;-moz-border-left-colors:none;-moz-border-right-colors:none;-moz-border-top-colors:none;background-color:#FFC107;border-radius:4px;border:none 0;width:224px;height:40px;line-height:40px;cursor:pointer;font-family:"微软雅黑";font-size:16px;color:#FFF;padding:0;margin:0;}
+.loginbtn:hover,.loginbtn:focus {background-color:#ecb204;}
+.loginbtn:active {color:#ccc;}
+
+
+.dropdown:hover .dropdown-child{display: block;}
+.dropdown{position: relative;}
+.dropdown-child{display: none;position: absolute;top: 60px;z-index: 999;background-color: white;border: 1px solid #efefef;border-radius: 3px;width: 60px;padding: 5px;}
+.dropdown-child dd{line-height: 25px;font-weight: normal;}
+

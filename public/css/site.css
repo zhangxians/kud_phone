@@ -1,0 +1,138 @@
+@charset "utf-8";
+/*重写layui的样式*/
+/*.layui-laypage a, .layui-laypage span{border: 1px solid #dce5eb!important; }*/
+.layui-btn-normal {background-color: #38a2d7}
+.layui-btn-primary:hover {border-color: #38a2d7}
+.layui-btn-small i{font-size: 12px!important}
+
+.layui-input, .layui-select, .layui-textarea{height: 30px;line-height: 30px;display: inline-block}
+.layui-form-pane .layui-input,.layui-form-pane .layui-select{height: 38px;line-height: 38px}
+.layui-form-label{padding: 5px 15px;}
+.layui-form-item{margin-bottom: 7px;}
+.layui-form-select dl{}
+.layui-flow-more{position: absolute;}
+
+.layui-quote-green{border-left:5px solid #6c9a36}
+
+.select-small-box{margin-left: 10px}
+.select-small-box select{display: none}
+.select-small-box .layui-form-select,
+.select-small-box .layui-form-select input{height: 30px;line-height: 30px;vertical-align: middle;color: #555}
+.select-small-box dl dd{height: 30px;line-height: 30px;color: #555}
+.select-small-box dl{top:32px;z-index: 9999}
+.select-small-box dl dd.layui-this{background-color:#38a2d7}
+.layui-laypage .layui-laypage-curr .layui-laypage-em{background-color: #38a2d7}
+.layui-table-tool .layui-laypage a:hover{color: #38a2d7}
+
+.disabled{background-color: #eee;}
+
+.select-mini-box{margin-left: 0px}
+.select-mini-box select{display: none}
+.select-mini-box .layui-form-select,
+.select-mini-box .layui-form-select input{height: 24px;line-height: 24px;vertical-align: middle;color: #555}
+.select-mini-box dl dd{height: 24px;line-height: 24px;color: #555}
+.select-mini-box .layui-form-select dl{top:26px;z-index: 9000}
+.select-mini-box dl dd.layui-this{background-color:#38a2d7}
+
+.layui-nav .layui-nav-item{float: left}
+.layui-btn-ok {border: 0;background-color: #5eb95e;  color: #fff;  }
+.layui-btn-fail{  border:0;  background-color: #dd514c;  color: #fff;  }
+.layui-btn-ok:hover {  border-color: #5eb92e;  color: #eee;  }
+.layui-btn-fail:hover {background-color: #dd5140;  color: #eee;  }
+
+/*CSS Hack*/
+.layui-input-block{+margin-left:0}/* + IE6 7 */
+.layui-layer{border:1px solid #ccc\9}/* \9 IE6 7 8 */
+.layui-input{_width:300px;}/* _ IE6 7 */
+.layui-laypage-curr{_width:30px;_padding:0}
+.layui-nav .layui-nav-item dd a{padding-left:32px;}
+
+/*通用样式*/
+a{color: #38a2d7}
+a:hover{text-decoration: none}
+
+.main-iframe{background-color: transparent}
+.pd-20{padding: 20px;margin: 20px;border: 1px solid #ccc\9;background-color: #fff;box-shadow: 0 12px 24px 0 rgba(7,17,27,.2);border-radius: 2px;}
+.bd1{background-color: #f8f8f8;border: 1px solid #eeeeee;padding:7px 7px}
+.w-100{width: 100px;}
+.w-120{width: 120px;}
+.w-160{width: 160px;}
+.w-180{width: 180px;}
+.input-inline{display: inline-block;float: left;vertical-align: bottom;margin-right: 2px}
+.content-header{height:30px;min-width: 900px; white-space: nowrap;  text-overflow: ellipsis;margin-bottom: 15px;}
+.content-body{width: 100%;}
+
+.site-title{margin-bottom: 10px;}
+.site-title fieldset {border: none;  padding: 0;  border-top: 1px solid #e2e2e2}
+.site-title fieldset legend {margin-left: 20px;  padding: 0 10px;  font-size: 22px;  font-weight: 300; color: #333}
+
+/*网站整体样式*/
+.title-icon{font-size: 20px;padding-right: 8px}
+.tips{font-size: 12px;color: green}
+.warning{font-size: 12px;color: red;font-weight: bold}
+.txt-c{text-align: center}
+.site-quote{padding:6px 10px;border-left:5px solid #38a2d7;line-height: normal}
+
+
+/*选项卡导航*/
+.Hui-tabNav{height:32px; padding-right:75px;overflow:hidden; position:relative;background-color: #f2f2f2;border-bottom: 1px solid #ccc;}
+.Hui-tabNav-wp{position:relative; height:36px;overflow:hidden}
+.Hui-tabNav .acrossTab{ position:absolute; height:24px; line-height:24px; background:none; top:3px; left:0;padding-top:0}
+.Hui-tabNav .acrossTab li{ border: 1px solid #d4d4d4;border-radius: 3px;margin-left: 5px;height:24px;line-height:24px;}
+.show_iframe iframe {position: absolute;bottom: 0;height: 100%;width: 100%}
+.Hui-tabNav-more {position: absolute;right:0px;width:70px;top:8px;display: none}
+.Hui-tabNav-more i{font-size: 12px;}
+.acrossTab{height:29px;width:1px;  _background: none;  _padding-left: 538px;  _margin-left: -538px;
+    _padding-top: 0px;_margin-top: -0px; padding-top:1px}
+.acrossTab li{position:relative;float:left; display:inline-block; height:29px; line-height:29px; font-size:12px;cursor:pointer;padding:0 30px; white-space:nowrap;color:#282828; background-position:0 0}
+.acrossTab li:hover,.acrossTab li.active{    background-color: #e8ae00;color: white;border:1px solid #ffc100
+}
+.acrossTab li>i{
+    position:absolute; display:block; width:13px; height:13px; top:0px;  right:5px; font-size:12px; cursor:pointer;font-style: normal;}
+.acrossTab li>i:hover{color: red}
+.acrossTab li span>i{font-size: 12px;padding-right: 4px;}
+
+/*Label*/
+.label, .badge{display: inline-block;padding:2px 4px;font-size: 11.844px;font-weight: bold;line-height:14px;color: #fff;white-space: nowrap;vertical-align: baseline;background-color: #999}
+/*圆角*/
+.label.radius{border-radius: 3px}
+.badge{padding-right:9px;padding-left:9px;border-radius:9px}
+.label:empty, .badge:empty{display: none}
+a.label:hover, a.label:focus, a.badge:hover, a.badge:focus{color: #fff;text-decoration: none;cursor: pointer}
+/*默认*/
+.label-default, .badge-default{background-color: #e6e6e6; color:#333}
+.label-default[href], .badge-default[href]{background-color: #e6e6e6;color:#333}
+/*主要*/
+.label-primary, .badge-primary{background-color: #5a98de}
+.label-primary[href], .badge-primary[href]{background-color: #5a98de}
+/*主要*/
+.label-secondary, .badge-secondary{background-color: #3bb4f2}
+.label-secondary[href], .badge-secondary[href]{background-color: #3bb4f2}
+/*成功*/
+.label-success, .badge-success{background-color:#5eb95e}
+.label-success[href], .badge-success[href]{background-color: #5eb95e}
+/*警告*/
+.label-warning, .badge-warning{background-color: #f37b1d}
+.label-warning[href], .badge-warning[href]{background-color: #f37b1d}
+/*危险*/
+.label-danger, .badge-danger{background-color: #dd514c}
+.label-danger[href], .badge-danger[href]{background-color: #dd514c}
+
+.Huialert{ position:relative;padding:8px 35px 8px 14px;margin-bottom: 20px;text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);background-color: #fcf8e3;border: 1px solid #fbeed5;border-radius: 4px}
+.Huialert, .Huialert h4{color: #c09853}
+.Huialert h4{margin: 0}
+.Huialert .Hui-iconfont{position:absolute;top:9px;right:10px;line-height: 20px;cursor:pointer; color:#000; opacity:0.2;_color:#666}
+.Huialert .Hui-iconfont.hover{ color:#000;opacity:0.8}
+.Huialert-success{color: #468847;background-color: #dff0d8;border-color: #d6e9c6}
+.Huialert-success h4{color: #468847}
+.Huialert-danger, .Huialert-error{color: #b94a48;background-color: #f2dede;border-color: #eed3d7}
+.Huialert-danger h4, .Huialert-error h4{color: #b94a48}
+.Huialert-info{color: #3a87ad;background-color: #d9edf7;border-color: #bce8f1}
+.Huialert-info h4{color: #3a87ad}
+.Huialert-block{padding-top: 14px;padding-bottom: 14px}
+.Huialert-block > p, .Huialert-block > ul{margin-bottom: 0}
+.Huialert-block p + p{margin-top: 5px}
+
+/*填写报表时的样式*/
+.help-tip{padding-left: 5px;font-size: 12px;cursor:pointer;}
+.help-tip-s1{font-weight: bold;font-size: 14px;}

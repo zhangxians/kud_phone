@@ -1,0 +1,269 @@
+@charset "utf-8";
+/*菜单收缩切换*/
+body {
+    /*background-color: #f5f5f5;*/
+}
+
+/*************头部样式*************/
+.head-user{
+    float: right;
+    line-height: 42px;
+    padding-right: 15px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #a2a7b5
+}
+
+.head-user .layui-nav{background-color: transparent;}
+.head-user .layui-nav .layui-nav-item{line-height: 42px;}
+.head-user .layui-nav .layui-nav-item a{color:#a2a7b5}
+.head-user .layui-nav .layui-this:after, .layui-nav-bar, .layui-nav-tree .layui-nav-itemed:after{background-color: #efefef;}
+.head-user .layui-nav-child{top:55px;}
+.head-name{padding-right: 20px;}
+.head-name i{  font-size: 14px;  }
+.logout_btn{font-size: 13px;color: #a2a7b5;}
+.logout_btn i{font-size: 14px;}
+.block {display: inline-block;  }
+.header {
+    border-top: 2px solid #23b7e5;
+    position: fixed;
+    min-height: 42px;
+    background-color: #fafafa;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 1010;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .15);
+    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, .15);
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .15);
+    transition: all .5s ease;
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    border-bottom: 1px solid #eee\9;
+    border-bottom: 0\9\0; /* IE 9+ */
+}
+.logo {
+    line-height: 42px;
+    padding-left: 15px;
+    font-size: 16px;
+    font-weight: 500;
+    float: left;
+    color: #a2a7b5
+}
+
+.logo i {
+    font-size: 18px;
+}
+
+/*************左侧导航*************/
+.sidebar {
+    width:200px;
+    position: absolute;
+    top: 0px;
+    left: 0;
+    bottom: 0;
+    background-color: #1c2b36;
+
+    min-height: 816px;
+    height: 100%;
+    overflow-y: auto;
+}
+.sidebar::-webkit-scrollbar {
+    /*滚动条整体样式*/
+    width : 2px;  /*高宽分别对应横竖滚动条的尺寸*/
+    height: 1px;
+}
+.sidebar::-webkit-scrollbar-thumb {
+    /*滚动条里面小方块*/
+    border-radius   : 2px;
+    background-color: skyblue;
+    background-image: -webkit-linear-gradient(
+            45deg,
+            rgba(255, 255, 255, 0.2) 25%,
+            transparent 25%,
+            transparent 50%,
+            rgba(255, 255, 255, 0.2) 50%,
+            rgba(255, 255, 255, 0.2) 75%,
+            transparent 75%,
+            transparent
+    );
+}
+.sidebar::-webkit-scrollbar-track {
+    /*滚动条里面轨道*/
+    box-shadow   : inset 0 0 5px rgba(0, 0, 0, 0.2);
+    background   : #ededed;
+    border-radius: 2px;
+}
+
+.sidebar-menu {
+    position: relative;
+    list-style: none;
+    background-color: #1c2b36;
+    padding-top: 44px;
+}
+
+.sidebar-menu li {
+    position: relative;
+    border-bottom: 1px solid #17232c;
+}
+.sidebar-menu li a {
+    position: relative;
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    background-color: transparent;
+    color: #8dacc4;
+    text-transform: uppercase;
+    outline: 0;
+    height: 42px;
+    line-height: 42px;
+    z-index: 10;
+    text-decoration: none;
+}
+.sidebar-menu li a:hover {
+    background-color: #17232c;
+    color: #fff;
+}
+
+.sidebar-menu li.active>a {
+    background-color: #17232c;
+    color: #fff!important;
+}
+.sidebar-menu .submenu li {
+    background-color: #17232c6e;
+    border-bottom: 1px solid #17232c;
+}
+
+.sidebar-menu .submenu li a {
+    font-weight: 400;
+    font-size: 11px;
+    padding-left:25px;
+    background-color: #131e25;
+    border-bottom: 1px solid #17232c;
+    color: #7ca0bb;
+}
+
+.sort-submenu li {
+    line-height: 32px;
+    background-color: #131e25;
+    border-bottom: 1px solid #17232c;
+}
+
+.sort-submenu li a {
+    font-weight: 400;
+    font-size: 11px;
+    background-color: #131e25;
+    border-bottom: 1px solid #17232c;
+    color: #7ca0bb;
+}
+.sort-submenu li a:hover{
+    color: white;
+    background-color: #17232c;
+}
+.menu-content{
+    height: 42px;
+    overflow: hidden;
+}
+
+.sidebar-menu li.active .menu-content-hover {
+    left: 0px;
+}
+
+.nav-item-indigo .menu-content-hover {
+    background-color: #ecbb6b;
+}
+
+.nav-item-blue .menu-content-hover {
+    background-color: #23b7e5;
+}
+
+.nav-item-purple .menu-content-hover {
+    background-color: #7266ba;
+}
+
+.nav-item-red .menu-content-hover {
+    background-color: #e36159;
+}
+
+.nav-item-1 .menu-content-hover {
+    background-color: #e36159;
+}
+.nav-item-2 .menu-content-hover {
+    background-color: orange;
+}
+
+.nav-item-3 .menu-content-hover {
+    background-color: #ecbb6b;
+}
+.nav-item-4 .menu-content-hover {
+    background-color: #74b510;
+}
+.nav-item-5 .menu-content-hover {
+    background-color: deepskyblue;
+}
+.nav-item-0 .menu-content-hover {
+    background-color: #7266ba;
+}
+
+.sidebar-menu .menu-content-hover {
+    /*border-radius: 0 4px 4px 0;*/
+    position: absolute;
+    left: -43px;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    width: 45px;
+    text-align: center;
+    vertical-align: middle;
+    z-index: -1;
+}
+
+.sidebar-menu .menu-icon {
+    padding: 0;
+    display: inline-block;
+    width: 45px;
+    text-align: center;
+}
+.sidebar-menu .menu-str{
+    padding-left: 4px;
+    border-left: 1px solid #17232c;
+}
+
+    /*************内容区域*************/
+.main-content {
+    position: absolute;
+    left: 200px;
+    top: 44px;
+    right: 0;
+    bottom: 0;
+    overflow-x: none;
+    overflow-y: auto;
+    min-width: 800px;
+}
+
+.main-iframe {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+#iframe_box {position: absolute;top:33px;right: 0;bottom: 0;left: 0;width: 100%;}
+/*菜单收缩切换*/
+.dislpayArrow{position: absolute;top: 0;bottom: 0;left:0px;width:0px; height:100%;z-index:10}
+.dislpayArrow a{ position:absolute; display:block; width:17px; height:61px;bottom:50%; margin-top:-30px;outline:none;
+    background: url(/images/sprite-min.png) 0px 0px no-repeat;
+    _background: none;
+    _padding-left: 500px;
+    _margin-left: -500px;
+    _padding-top: 0px;
+    _margin-top: -0px;
+    _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src="/images/sprite-min.png");
+}
+.dislpayArrow a.open{ background-position:0px -61px}
+.dislpayArrow a:hover{ text-decoration:none; background-position:-21px 0}
+.dislpayArrow a.open:hover{background-position:-21px -61px}
