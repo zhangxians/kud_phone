@@ -18,8 +18,8 @@ class LoginController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function login(Request $request){
-        dd($_SERVER);
         $ip = $request->ip();
+        $ip = $this->getIp();
         if(Auth::check()){
             return redirect('');
         }
@@ -32,6 +32,8 @@ class LoginController extends Controller
      */
     public function loginIn(Request $request){
         $ip = $request->ip();
+        $ip = $this->getIp();
+
         $username = $request->username??'';
         $password = $request->password??'';
         $canLogin = TbIp::where([['ip',$ip],['status',0]])->count();

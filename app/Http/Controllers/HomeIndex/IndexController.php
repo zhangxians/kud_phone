@@ -15,6 +15,8 @@ class IndexController extends Controller
     // 主页
     public function index(Request $request){
         $ip = $request->ip();
+        $ip = $this->getIp();
+
         $ti = time();
         // 获取当前用户正在操作的用户
         $cUser =  Customer::where([['ip',$ip],['is_call',1]])->first();
@@ -46,6 +48,8 @@ class IndexController extends Controller
         $type = $request->type??false;
         $desc = $request->desc??false;
         $id   = $request->id??0;
+        $ip = $this->getIp();
+
         if(!in_array($type,[0,1,2,3,4,5])){
             return json_fail('请求类型错误');
         }
@@ -54,7 +58,7 @@ class IndexController extends Controller
             return json_fail("间隔时间太短，请在".($request->t1+10-$t2)."秒后再次点击。");
         }
         DB::beginTransaction();
-        $res = Customer::where('id',$id)->lockForUpdate()->update(['type'=>$type,'desc'=>$desc,'ip'=> $request->ip(),'is_call'=>0]);
+        $res = Customer::where('id',$id)->lockForUpdate()->update(['type'=>$type,'desc'=>$desc,'ip'=> $ip,'is_call'=>0]);
         DB::commit();
         if($res){
             return json_success('操作成功');
