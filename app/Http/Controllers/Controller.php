@@ -13,6 +13,6 @@ class Controller extends BaseController
 
     public function getIp(){
         $ipd = $_SERVER['SSH_CLIENT'];
-        return substr($ipd,0,strrpos($ipd," "));
+        return substr($ipd,0,strpos($ipd," "));
     }
 }
