@@ -18,6 +18,7 @@ class LoginController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function login(Request $request){
+        dd($_SERVER);
         $ip = $request->ip();
         if(Auth::check()){
             return redirect('');
