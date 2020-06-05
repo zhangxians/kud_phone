@@ -177,7 +177,10 @@ return [
 
       //  App\Providers\RepositoryServiceProvider::class, //自定义
 
-        SwooleTW\Http\LaravelServiceProvider::class,
+     //   SwooleTW\Http\LaravelServiceProvider::class,
+
+
+        Hhxsv5\LaravelS\Illuminate\LaravelSServiceProvider::class,
 
     ],
 

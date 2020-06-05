@@ -34,6 +34,7 @@ class LoginController extends Controller
         $ip = $request->ip();
         $ip = $this->getIp();
 
+
         $username = $request->username??'';
         $password = $request->password??'';
         $canLogin = TbIp::where([['ip',$ip],['status',0]])->count();
