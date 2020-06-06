@@ -70,6 +70,8 @@ class IndexController extends Controller
         $socketUser = Cache::get('socketUser')??[];
         foreach ($data as  &$d){
             $d->online = 0;
+            log_info('sssssdddds');
+            log_info($socketUser);
             foreach ($socketUser as  $s){
                 log_info('ssssssssssssss');
                 log_info($s);
