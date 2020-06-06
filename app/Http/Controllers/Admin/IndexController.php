@@ -68,15 +68,15 @@ class IndexController extends Controller
     public function userPageList(){
         $data = User::orderBy('id','desc')->get();
         $socketUser = Cache::get('socketUser')??[];
-//        foreach ($data as  &$d){
-//            $d->online = 0;
-//            foreach ($socketUser as  $s){
-//                if($d == $s['user_id']){
-//                    $d->online = 1;
-//                    continue;
-//                }
-//            }
-//        }
+        foreach ($data as  &$d){
+            $d->online = 0;
+            foreach ($socketUser as  $s){
+                if($d->id == $s->user_id){
+                    $d->online = 1;
+                    continue;
+                }
+            }
+        }
         return json_success('查询成功',$socketUser);
     }
     public function tbIp(Request $request){
