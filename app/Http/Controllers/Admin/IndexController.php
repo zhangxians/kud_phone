@@ -70,12 +70,11 @@ class IndexController extends Controller
         $socketUser = Cache::get('socketUser')??[];
         foreach ($data as  &$d){
             $d->online = 0;
-            log_info('sssssdddds');
-            log_info($socketUser);
+            log('sssssdddds');
+            log($socketUser);
             foreach ($socketUser as  $s){
                 log_info('ssssssssssssss');
                 log_info($s);
-//                return json_success('',$s);
 //                if($d->id == $s->user_id){
 //                    $d->online = 1;
 //                    continue;
