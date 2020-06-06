@@ -12,7 +12,7 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     public function getIp(){
-       // return request()->ip();
+        return request()->ip();
         $ipd = $_SERVER['SSH_CLIENT']??'';
         return substr($ipd,0,strpos($ipd," "));
     }
