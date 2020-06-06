@@ -32,9 +32,9 @@ class WebSocketService implements WebSocketHandlerInterface
             if($user){
                 $socketUser = Cache::get('socketUser');
                 if($socketUser&&count($socketUser)>0){
-                    $socketUser[$request->fd] = array_merge($socketUser,[['user_id'=>$user->id,'socket_id'=>$request->fd,'token'=>$token]]);
+                    $socketUser[$user->id] = array_merge($socketUser,[['user_id'=>$user->id,'socket_id'=>$request->fd,'token'=>$token]]);
                 }else{
-                    $socketUser[$request->fd] = [['user_id'=>$user->id,'socket_id'=>$request->fd,'token'=>$token]];
+                    $socketUser[$user->id] = [['user_id'=>$user->id,'socket_id'=>$request->fd,'token'=>$token]];
                 }
                     Cache::forever('socketUser',$socketUser);
             }
@@ -56,7 +56,11 @@ class WebSocketService implements WebSocketHandlerInterface
     {
         $socketUser = Cache::get('socketUser');
         if($socketUser&&count($socketUser)>0){
-            unset($socketUser[$fd]);
+            foreach ($socketUser as $k=>$s){
+                if($s['socket_id']==$fd){
+                    unset($socketUser[$k]);
+                }
+            }
         }
         Cache::forever('socketUser',$socketUser);
         // throw new \Exception('an exception');// all exceptions will be ignored, then record them into Swoole log, you need to try/catch them
