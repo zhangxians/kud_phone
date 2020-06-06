@@ -20,11 +20,23 @@ return [
     ],
     'event_handlers'           => [],
     'websocket'                => [
-        'enable' => false,
-        //'handler' => XxxWebSocketHandler::class,
+        'enable' => true,
+        'handler' => \App\Services\WebSocketService::class,
     ],
     'sockets'                  => [],
     'processes'                => [
+//        'test' => [ // Key name is process name
+//            'class'    => \App\Processes\TestProcess::class,
+//            'redirect' => false, // Whether redirect stdin/stdout, true or false
+//            'pipe'     => 0,     // The type of pipeline, 0: no pipeline 1: SOCK_STREAM 2: SOCK_DGRAM
+//            'enable'   => true,  // Whether to enable, default true
+//            //'queue'    => [ // Enable message queue as inter-process communication, configure empty array means use default parameters
+//            //    'msg_key'  => 0,    // The key of the message queue. Default: ftok(__FILE__, 1).
+//            //    'mode'     => 2,    // Communication mode, default is 2, which means contention mode
+//            //    'capacity' => 8192, // The length of a single message, is limited by the operating system kernel parameters. The default is 8192, and the maximum is 65536
+//            //],
+//            //'restart_interval' => 5, // After the process exits abnormally, how many seconds to wait before restarting the process, default 5 seconds
+//        ],
         //[
         //    'class'    => \App\Processes\TestProcess::class,
         //    'redirect' => false, // Whether redirect stdin/stdout, true or false
@@ -77,6 +89,10 @@ return [
         'enable_reuse_port'  => true,
         'enable_coroutine'   => false,
         'http_compression'   => false,
+
+        // 关闭时间
+        'heartbeat_idle_time'      => 600,
+        'heartbeat_check_interval' => 60,
 
         // Slow log
         // 'request_slowlog_timeout' => 2,
