@@ -74,13 +74,10 @@ class IndexController extends Controller
             Log::debug('sssssdddds');
             Log::debug($socketUser);
             foreach ($socketUser as  $s){
-                Log::debug('$s');
-                Log::debug($s);
-
-//                if($d->id == $s->user_id){
-//                    $d->online = 1;
-//                    continue;
-//                }
+                if($d->id == $s['user_id']){
+                    $d->online = 1;
+                    continue;
+                }
             }
         }
         return json_success('查询成功',$socketUser);
