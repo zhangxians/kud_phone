@@ -43,13 +43,14 @@ class LoginController extends Controller
         }
         Auth::logoutOtherDevices($password);
         $res = Auth::guard('web')->attempt(['username'=>$username,'password'=>$password,'status'=>0]);
+        $token=$this->makeToken();
         if($res){
-            User::where('id',Auth::user()->id)->update(['ip'=>$ip]);
+            User::where('id',Auth::user()->id)->update(['ip'=>$ip,'token'=>$token]);
             if($username=='sadmin'){
-                return json_success('登录成功','/customer');
+                return json_success('登录成功',['token'=>$token,'url'=>'/customer']);
             }
         }
-        return $res?json_success('登录成功'):json_fail('登录失败');
+        return $res?json_success('登录成功',['token'=>$token,'url'=>'/']):json_fail('登录失败');
     }
 
     /**
@@ -57,6 +58,7 @@ class LoginController extends Controller
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function logout(){
+        User::where('id',Auth::user()->id)->update(['token'=>'']);
         Auth::logout();
         return redirect('/login');
     }

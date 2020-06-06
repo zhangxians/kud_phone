@@ -23,6 +23,7 @@ class CreateTbUserTable extends Migration
             $table->string('ip')->comment('最后登录ip')->nullable();
             $table->integer('status')->comment('状态 0 正常')->default(0);
             $table->string('desc',500)->comment('描述')->nullable();
+            $table->string('token',255)->comment('token')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

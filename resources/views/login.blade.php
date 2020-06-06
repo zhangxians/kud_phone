@@ -63,8 +63,10 @@
             data:_data,
             success: function (resData) {
                 if(resData.code===0){
+                    console.log(resData);
+                    window.localStorage.setItem('token',resData.data.token);
                     toast({'content':resData.msg,'time':1000});
-                    setTimeout(function(){window.location.href=resData.data?resData.data:'/'; }, 1000);
+                    setTimeout(function(){window.location.href=resData.data.url?resData.data.url:'/'; }, 1000);
                 }else {
                     toast({'content':resData.msg,'time':2000});
                 }
