@@ -39,7 +39,7 @@ class WebSocketService implements WebSocketHandlerInterface
 
         }
 
-        $server->push($request->fd, $token.'token');
+        $server->push($request->fd, request()->all());
 
 
         // throw new \Exception('an exception');// all exceptions will be ignored, then record them into Swoole log, you need to try/catch them
