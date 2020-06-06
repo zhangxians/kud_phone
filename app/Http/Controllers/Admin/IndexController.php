@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
 class IndexController extends Controller
@@ -66,6 +67,16 @@ class IndexController extends Controller
      */
     public function userPageList(){
         $data = User::orderBy('id','desc')->get();
+        $socketUser = Cache::get('socketUser')??[];
+        foreach ($data as  &$d){
+            $d->online = 0;
+            foreach ($socketUser as  $s){
+                if($d == $s['user_id']){
+                    $d->online = 1;
+                    continue;
+                }
+            }
+        }
         return json_success('查询成功',$data);
     }
     public function tbIp(Request $request){

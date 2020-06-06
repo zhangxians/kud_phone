@@ -145,15 +145,8 @@
     //【用于指定收到服务器数据后的回调函数】
     //【服务器数据有可能是文本，也有可能是二进制数据，需要判断】
     ws.onmessage = function (event) {
-        if (typeof event.data === String) {
-            console.log("Received data string");
-        }
-
-        if (event.data instanceof ArrayBuffer) {
-            var buffer = event.data;
-            console.log("Received arraybuffer");
-        }
         console.log(event.data);
+        toast({'content':event.data,'time':2000, 'style': 'background-color:#FFB800;'});
     };
 
     //[【于指定连接关闭后的回调函数。】

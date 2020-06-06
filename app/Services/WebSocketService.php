@@ -2,7 +2,9 @@
 
 
 namespace App\Services;
+use App\Models\User;
 use Hhxsv5\LaravelS\Swoole\WebSocketHandlerInterface;
+use Illuminate\Support\Facades\Cache;
 use Swoole\Http\Request;
 use Swoole\WebSocket\Frame;
 use Swoole\WebSocket\Server;
@@ -19,8 +21,27 @@ class WebSocketService implements WebSocketHandlerInterface
     {
         // Before the onOpen event is triggered, the HTTP request to establish the WebSocket has passed the Laravel route,
         // so Laravel's Request, Auth information is readable, and Session is readable and writable, but only in the onOpen event.
-         \Log::info('New WebSocket connection', [$request->fd, request()->all(), session()->getId(), session('xxx'), session(['yyy' => time()])]);
-        $server->push($request->fd, $request->fd);
+        // \Log::info('New WebSocket connection', [$request->fd, request()->all(), session()->getId(), session('xxx'), session(['yyy' => time()])]);
+
+        $token = request()->all()->token()??false;
+        if($token){
+            $user = User::where('token',$token)->first();
+            // 有user时 保存数据
+            if($user){
+                $socketUser = Cache::get('socketUser');
+                if($socketUser&&count($socketUser)>0){
+                    $socketUser[$request->fd] = array_merge($socketUser,[['user_id'=>$user->id,'socket_id'=>$request->fd,'token'=>$token]]);
+                }else{
+                    $socketUser[$request->fd] = [['user_id'=>$user->id,'socket_id'=>$request->fd,'token'=>$token]];
+                }
+                    Cache::forever('socketUser',$socketUser);
+            }
+
+        }
+
+        $server->push($request->fd, $token);
+
+
         // throw new \Exception('an exception');// all exceptions will be ignored, then record them into Swoole log, you need to try/catch them
     }
     public function onMessage(Server $server, Frame $frame)
@@ -31,6 +52,11 @@ class WebSocketService implements WebSocketHandlerInterface
     }
     public function onClose(Server $server, $fd, $reactorId)
     {
+        $socketUser = Cache::get('socketUser');
+        if($socketUser&&count($socketUser)>0){
+            unset($socketUser[$fd]);
+        }
+        Cache::forever('socketUser',$socketUser);
         // throw new \Exception('an exception');// all exceptions will be ignored, then record them into Swoole log, you need to try/catch them
     }
 }
