@@ -71,6 +71,7 @@ class IndexController extends Controller
         foreach ($data as  &$d){
             $d->online = 0;
             foreach ($socketUser as  $s){
+                return json_success('',$s);
                 if($d->id == $s->user_id){
                     $d->online = 1;
                     continue;
