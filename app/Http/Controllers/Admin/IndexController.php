@@ -77,7 +77,7 @@ class IndexController extends Controller
                 }
             }
         }
-        return json_success('查询成功',$socketUser);
+        return json_success('查询成功',$data);
     }
     public function tbIp(Request $request){
         return view('admin.ip');
