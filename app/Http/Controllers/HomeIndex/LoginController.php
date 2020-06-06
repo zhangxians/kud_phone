@@ -41,8 +41,7 @@ class LoginController extends Controller
         if($canLogin<=0){
             return json_fail('当前 IP 不允许登录');
         }
-        //dd(['username'=>$username,'password'=>$password,'status'=>0]);
-        Auth::logoutOtherDevices($password);
+        // Auth::logoutOtherDevices($password);
         $res = Auth::guard('web')->attempt(['username'=>$username,'password'=>$password,'status'=>0]);
         $token=$this->makeToken();
         if($res){
@@ -59,7 +58,7 @@ class LoginController extends Controller
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function logout(){
-        User::where('id',Auth::user()->id)->update(['token'=>'']);
+       // User::where('id',Auth::user()->id)->update(['token'=>'']);
         Auth::logout();
         return redirect('/login');
     }
