@@ -71,12 +71,12 @@ class IndexController extends Controller
         foreach ($data as  &$d){
             $d->online = 0;
             foreach ($socketUser as  $s){
-                log_info($s);
-                return json_success('',$s);
-                if($d->id == $s->user_id){
-                    $d->online = 1;
-                    continue;
-                }
+                log_info('ssssssssssssss',$s);
+//                return json_success('',$s);
+//                if($d->id == $s->user_id){
+//                    $d->online = 1;
+//                    continue;
+//                }
             }
         }
         return json_success('查询成功',$socketUser);
