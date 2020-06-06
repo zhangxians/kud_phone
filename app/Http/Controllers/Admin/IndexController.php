@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class IndexController extends Controller
 {
@@ -70,11 +71,12 @@ class IndexController extends Controller
         $socketUser = Cache::get('socketUser')??[];
         foreach ($data as  &$d){
             $d->online = 0;
-            log('sssssdddds');
-            log($socketUser);
+            Log::debug('sssssdddds');
+            Log::debug($socketUser);
             foreach ($socketUser as  $s){
-                log_info('ssssssssssssss');
-                log_info($s);
+                Log::debug('$s');
+                Log::debug($s);
+
 //                if($d->id == $s->user_id){
 //                    $d->online = 1;
 //                    continue;
