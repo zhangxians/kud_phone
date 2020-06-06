@@ -20,7 +20,6 @@ class WebSocketService implements WebSocketHandlerInterface
         // Before the onOpen event is triggered, the HTTP request to establish the WebSocket has passed the Laravel route,
         // so Laravel's Request, Auth information is readable, and Session is readable and writable, but only in the onOpen event.
         // \Log::info('New WebSocket connection', [$request->fd, request()->all(), session()->getId(), session('xxx'), session(['yyy' => time()])]);
-        dd($request->fd);
         log_info($request->token);
         $server->push($request->fd, '链接成功');
         // throw new \Exception('an exception');// all exceptions will be ignored, then record them into Swoole log, you need to try/catch them
