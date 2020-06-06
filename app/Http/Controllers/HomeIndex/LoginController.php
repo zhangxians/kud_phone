@@ -41,6 +41,7 @@ class LoginController extends Controller
         if($canLogin<=0){
             return json_fail('当前 IP 不允许登录');
         }
+        //dd(['username'=>$username,'password'=>$password,'status'=>0]);
         $res = Auth::guard('web')->attempt(['username'=>$username,'password'=>$password,'status'=>0]);
         $token=$this->makeToken();
         if($res){
