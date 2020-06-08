@@ -31,7 +31,6 @@ class WebSocketService implements WebSocketHandlerInterface
             // 有user时 保存数据
             if($user){
                 $socketUser = Cache::get('socketUser')??[];
-                $socketUser = [];
                 $socketUser[$user->id] = ['user_id'=>$user->id,'socket_id'=>$request->fd,'token'=>$token];
                 Cache::forever('socketUser',$socketUser);
             }
