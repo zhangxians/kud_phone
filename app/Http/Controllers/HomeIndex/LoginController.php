@@ -39,8 +39,9 @@ class LoginController extends Controller
         if($canLogin<=0){
             return json_fail('当前 IP 不允许登录');
         }
-        Auth::logoutOtherDevices($password);
         $res = Auth::guard('web')->attempt(['username'=>$username,'password'=>$password,'status'=>0]);
+        Auth::logoutOtherDevices($password);
+
         $token=$this->makeToken();
         if($res){
             User::where('id',Auth::user()->id)->update(['ip'=>$ip,'token'=>$token]);
