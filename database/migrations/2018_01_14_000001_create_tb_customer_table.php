@@ -34,6 +34,7 @@ class CreateTbCustomerTable extends Migration
             $table->string('address')->comment('地址')->nullable();
             $table->string('package')->comment('套餐')->nullable();
             $table->string('ip')->comment('操作者ip')->nullable();
+            $table->integer('user_id')->comment('操作者')->nullable();
             $table->integer('type')->comment('type 0：未处理，1空号，2：未接听，3：无意愿，4：有意愿，再联系，5：意愿强烈')->default(0);
             $table->string('desc',500)->comment('描述')->nullable();
             $table->timestamps();

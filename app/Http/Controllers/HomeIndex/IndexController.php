@@ -6,6 +6,7 @@ use App\Exceptions\DataNotException;
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class IndexController extends Controller
@@ -49,6 +50,7 @@ class IndexController extends Controller
         $desc = $request->desc??false;
         $id   = $request->id??0;
         $ip = $this->getIp();
+        $user = Auth::user();
 
         if(!in_array($type,[0,1,2,3,4,5])){
             return json_fail('请求类型错误');
@@ -58,7 +60,8 @@ class IndexController extends Controller
             return json_fail("间隔时间太短，请在".($request->t1+10-$t2)."秒后再次点击。");
         }
         DB::beginTransaction();
-        $res = Customer::where('id',$id)->lockForUpdate()->update(['type'=>$type,'desc'=>$desc,'ip'=> $ip,'is_call'=>0]);
+        $res = Customer::where('id',$id)->lockForUpdate()
+            ->update(['type'=>$type,'desc'=>$desc,'ip'=> $ip,'is_call'=>0,'user_id'=>$user->id]);
         DB::commit();
         if($res){
             return json_success('操作成功');

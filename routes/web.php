@@ -26,6 +26,7 @@ Route::group(['middleware' => ['auth','Admin']], function () {
     Route::get('/user', 'Admin\IndexController@user');
     Route::get('/user/page/list', 'Admin\IndexController@userPagelist');
     Route::put('/user', 'Admin\IndexController@userUpdate');
+    Route::post('/user/set/message', 'Admin\IndexController@setMessage');
 
     //
     Route::get('/ip', 'Admin\IndexController@tbIp');

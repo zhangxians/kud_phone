@@ -112,4 +112,21 @@ class IndexController extends Controller
     }
 
 
+    public function setMessage(Request $request){
+        $user_id = $request->id??-1;
+        $message = $request->message??'';
+        $socketUser = Cache::get('socketUser')??[];
+        if(isset($socketUser[$user_id])){
+            $user = $socketUser[$user_id];
+            $fd = $user['socket_id'];
+            $swoole = app('swoole');
+            $success = $swoole->push($fd, $message);
+            return $success?json_success('已经发送'):json_fail('发送失败！');
+        }else{
+            return json_fail('该员工已离线！');
+        }
+
+    }
+
+
 }
