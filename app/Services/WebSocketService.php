@@ -37,7 +37,7 @@ class WebSocketService implements WebSocketHandlerInterface
 
         }
 
-        $server->push($request->fd, $token);
+        //$server->push($request->fd, $token);
 
 
         // throw new \Exception('an exception');// all exceptions will be ignored, then record them into Swoole log, you need to try/catch them
@@ -45,7 +45,7 @@ class WebSocketService implements WebSocketHandlerInterface
     public function onMessage(Server $server, Frame $frame)
     {
         // \Log::info('Received message', [$frame->fd, $frame->data, $frame->opcode, $frame->finish]);
-        $server->push($frame->fd, date('Y-m-d H:i:s'));
+       // $server->push($frame->fd, date('Y-m-d H:i:s'));
         // throw new \Exception('an exception');// all exceptions will be ignored, then record them into Swoole log, you need to try/catch them
     }
     public function onClose(Server $server, $fd, $reactorId)
