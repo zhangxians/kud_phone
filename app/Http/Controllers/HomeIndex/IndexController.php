@@ -15,7 +15,6 @@ class IndexController extends Controller
 
     // 主页
     public function index(Request $request){
-        $ip = $request->ip();
         $ip = $this->getIp();
 
         $ti = time();

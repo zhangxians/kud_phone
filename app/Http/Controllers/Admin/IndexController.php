@@ -68,13 +68,11 @@ class IndexController extends Controller
      */
     public function userPageList(){
         $data = User::orderBy('id','desc')->withCount(['customer'=>function($query){
-            $query->where([['updated_at','>',date('Y-m-d 00:00:00')],['status','!=',0]]);
+            $query->where([['updated_at','>',date('Y-m-d 00:00:00')],['type','!=',0]]);
         }])->get();
         $socketUser = Cache::get('socketUser')??[];
         foreach ($data as  &$d){
             $d->online = 0;
-            Log::debug('sssssdddds');
-            Log::debug($socketUser);
             foreach ($socketUser as $s){
                 if($d->id == $s['user_id']){
                     $d->online = 1;

@@ -18,7 +18,6 @@ class LoginController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function login(Request $request){
-        $ip = $request->ip();
         $ip = $this->getIp();
         if(Auth::check()){
             return redirect('');
@@ -31,7 +30,6 @@ class LoginController extends Controller
      * @return string
      */
     public function loginIn(Request $request){
-        $ip = $request->ip();
         $ip = $this->getIp();
 
 
