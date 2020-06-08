@@ -136,7 +136,9 @@
     //【用于指定连接成功后的回调函数】
     ws.onopen = function (evt) {
         console.log("Connection open ...");
-        ws.send("Hello WebSockets!");
+       // alert("Hello WebSockets!");
+
+        // ws.send("Hello WebSockets!");
     };
     //ws.addEventListener('open', function (event) {
     //    ws.send('Hello Server!');
@@ -146,7 +148,8 @@
     //【服务器数据有可能是文本，也有可能是二进制数据，需要判断】
     ws.onmessage = function (event) {
         console.log(event.data);
-        toast({'content':event.data,'time':2000, 'style': 'background-color:#FFB800;'});
+        alert(event.data);
+       // toast({'content':event.data,'time':2000, 'style': 'background-color:#FFB800;'});
     };
 
     //[【于指定连接关闭后的回调函数。】
