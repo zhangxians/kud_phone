@@ -80,9 +80,10 @@ class IndexController extends Controller
                 }
             }
         }
-        return json_success('查询成功',$socketUser);
+        unset($d);
+        return json_success('查询成功',$data);
     }
-    public function tbIp(Request $request){
+    public function tbIp(){
         return view('admin.ip');
     }
 
