@@ -41,10 +41,12 @@ class LoginController extends Controller
         if($canLogin<=0){
             return json_fail('当前 IP 不允许登录');
         }
+
         $res = Auth::guard('web')->attempt(['username'=>$username,'password'=>$password,'status'=>0]);
         $token=$this->makeToken();
         if($res){
             Auth::logoutOtherDevices($password);
+
             User::where('id',Auth::user()->id)->update(['ip'=>$ip,'token'=>$token]);
             if($username=='sadmin'){
                 return json_success('登录成功',['token'=>$token,'url'=>'/customer']);

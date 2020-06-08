@@ -73,7 +73,7 @@ class IndexController extends Controller
             $d->online = 0;
             Log::debug('sssssdddds');
             Log::debug($socketUser);
-            foreach ($socketUser as  $s){
+            foreach ($socketUser as $s){
                 if($d->id == $s['user_id']){
                     $d->online = 1;
                     continue;
