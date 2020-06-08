@@ -20,4 +20,8 @@ class User extends Authenticatable {
         'password',
     ];
 
+
+    public function customer(){
+        return $this->hasMany('App\Models\Customer','user_id','id');
+    }
 }
