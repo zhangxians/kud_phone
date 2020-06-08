@@ -44,6 +44,7 @@
                             var _html = '<tr>' +
                                 '<td> 姓名：'+it.username+
                                 '<br>状态：'+(it.status==0?'<span style="color:#06ad0c;">正常</span>':'<span style="color:red;">禁用中</span>')+
+                                '<br>是否在线：'+(it.online==1?'<span style="color:#58c6ff;">在线</span>':'<span style="color:#ffa509;">离线</span>')+
                                 '<br>账号：'+it.username+
                                 '<br>最后登录ip：'+it.ip+
                                 '<br>最后登录时间：'+it.updated_at+
