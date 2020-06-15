@@ -148,6 +148,8 @@
     //【服务器数据有可能是文本，也有可能是二进制数据，需要判断】
     ws.onmessage = function (event) {
         console.log(event.data);
+        var str = JSON.parse(event.data);
+        alert({ title: ' ', content: str.msg, doneText: '关闭' }).then(callback)
         alert({ title: ' ', content: event.data, doneText: '关闭' }).then(callback)
        // toast({'content':event.data,'time':2000, 'style': 'background-color:#FFB800;'});
     };
