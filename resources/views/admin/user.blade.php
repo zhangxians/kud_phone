@@ -70,7 +70,7 @@
                                 '<td> 账号：'+it.username+
                                 '<br> 今日已拨：<span style="color:red;">'+it.customer_count+'</span>'+
                                 '<br>状态：'+(it.status==0?'<span style="color:#06ad0c;">正常</span>':'<span style="color:red;">禁用中</span>')+
-                                '<br>是否在线：'+((it.online!=1&&it.username!='sadmin')?'<span style="color:#ffa509;">离线</span>':'<span style="color:#58c6ff;">在线</span>')+
+                                '<br>是否在线：<input class="userList" value="'+it.id+'">'+((it.online!=1&&it.username!='sadmin')?'<span style="color:#ffa509;">离线</span>':'<span style="color:#58c6ff;">在线</span>')+
                                 '<br>最后登录ip：'+it.ip+
                                 '<br>最后登录时间：'+it.updated_at+
                                 '</td>'
@@ -184,7 +184,15 @@
             //【服务器数据有可能是文本，也有可能是二进制数据，需要判断】
             ws.onmessage = function (event) {
                 console.log(event.data);
-                alert({ title: ' ', content: event.data, doneText: '关闭' }).then(callback)
+                var str = JSON.parse(event.data);
+                if(str.status === 0 ||str.status === '0'){
+                    $('.userList').each(function () {
+                        if($(this).val()==str.user_id){
+                            $(this).next().html(str.type==='0'?'离线':'在线').css('color',(str.type==='0')?'#ffa509':'#58c6ff');
+                        }
+                    })
+                }
+                alert({ title: ' ', content: str.msg, doneText: '关闭' }).then(callback)
                 // toast({'content':event.data,'time':2000, 'style': 'background-color:#FFB800;'});
             };
 

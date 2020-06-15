@@ -119,6 +119,7 @@ class IndexController extends Controller
         if(isset($socketUser[$user_id])){
             $user = $socketUser[$user_id];
             $fd = $user['socket_id'];
+            $message = json_encode(['type'=>1,'status'=>0,'msg'=>$message,'id'=>$user_id]);
             $swoole = app('swoole');
             $success = $swoole->push($fd, $message);
             return $success?json_success('已经发送'):json_fail('发送失败！');

@@ -82,8 +82,9 @@ class WebSocketService implements WebSocketHandlerInterface
             }
             continue;
         }
+        $msg = $type?'退出登录':'登录';
         if ($socket_id) {
-            $server->push($socket_id, json_encode(['user_id'=>$id,'type'=>$type]));
+            $server->push($socket_id, json_encode(['user_id'=>$id,'type'=>$type,'msg'=>"用户 {$id} 已经{$msg}了",'status'=>1]));
         }
     }
 }

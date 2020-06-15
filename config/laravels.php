@@ -94,7 +94,7 @@ return [
 
         // 关闭时间
         'heartbeat_idle_time'      => 600,
-        'heartbeat_check_interval' => 60,
+        'heartbeat_check_interval' => 60*5,
 
         // Slow log
         // 'request_slowlog_timeout' => 2,
