@@ -194,7 +194,7 @@
                         console.log(str.user_id);
                         console.log($(this).next().val());
                         if(parseInt($(this).val())===str.user_id){
-                            $(this).next().html(str.type===0?'离线':'在线').css('color',(str.type===0)?'#ffa509':'#58c6ff');
+                            $(this).parent().find('span').eq(1).html(str.type===0?'离线':'在线').css('color',(str.type===0)?'#ffa509':'#58c6ff');
                         }
                     })
                 }
