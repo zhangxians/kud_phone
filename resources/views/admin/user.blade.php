@@ -190,7 +190,7 @@
 
                 if(str.status === 1 ||str.status === '1'){
                     $('.userList').each(function () {
-                        if($(this).val()===string(str.user_id)){
+                        if($(this).val()===str.user_id){
                             $(this).next().html(str.type==='0'?'离线':'在线').css('color',(str.type==='0')?'#ffa509':'#58c6ff');
                         }
                     })
