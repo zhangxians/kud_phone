@@ -48,6 +48,7 @@
     <script>
 
         setChart();
+        onWs();
         var msgId = 0;
         function setChart(){
             $.ajax({
@@ -159,37 +160,41 @@
 
 
 
+        function onWs() {
+            var ws = new WebSocket("ws://180.76.100.199/ws?token="+window.localStorage.getItem('token'));
+            //readyState属性返回实例对象的当前状态，共有四种。
+            //CONNECTING：值为0，表示正在连接。
+            //OPEN：值为1，表示连接成功，可以通信了。
+            //CLOSING：值为2，表示连接正在关闭。
+            //CLOSED：值为3，表示连接已经关闭，或者打开连接失败
+            //例如：if (ws.readyState == WebSocket.CONNECTING) { }
 
-        var ws = new WebSocket("ws://180.76.100.199/ws?token="+window.localStorage.getItem('token'));
-        //readyState属性返回实例对象的当前状态，共有四种。
-        //CONNECTING：值为0，表示正在连接。
-        //OPEN：值为1，表示连接成功，可以通信了。
-        //CLOSING：值为2，表示连接正在关闭。
-        //CLOSED：值为3，表示连接已经关闭，或者打开连接失败
-        //例如：if (ws.readyState == WebSocket.CONNECTING) { }
+            //【用于指定连接成功后的回调函数】
+            ws.onopen = function (evt) {
+                console.log("Connection open ...");
+                // alert("Hello WebSockets!");
 
-        //【用于指定连接成功后的回调函数】
-        ws.onopen = function (evt) {
-            console.log("Connection open ...");
-            // alert("Hello WebSockets!");
+                // ws.send("Hello WebSockets!");
+            };
+            //ws.addEventListener('open', function (event) {
+            //    ws.send('Hello Server!');
+            //};
 
-            // ws.send("Hello WebSockets!");
-        };
-        //ws.addEventListener('open', function (event) {
-        //    ws.send('Hello Server!');
-        //};
+            //【用于指定收到服务器数据后的回调函数】
+            //【服务器数据有可能是文本，也有可能是二进制数据，需要判断】
+            ws.onmessage = function (event) {
+                console.log(event.data);
+                alert({ title: ' ', content: event.data, doneText: '关闭' }).then(callback)
+                // toast({'content':event.data,'time':2000, 'style': 'background-color:#FFB800;'});
+            };
 
-        //【用于指定收到服务器数据后的回调函数】
-        //【服务器数据有可能是文本，也有可能是二进制数据，需要判断】
-        ws.onmessage = function (event) {
-            console.log(event.data);
-            alert({ title: ' ', content: event.data, doneText: '关闭' }).then(callback)
-            // toast({'content':event.data,'time':2000, 'style': 'background-color:#FFB800;'});
-        };
+            //[【于指定连接关闭后的回调函数。】
+            ws.onclose = function (evt) {
+                onWs();
+                console.log("Connection closed.");
+            };
+        }
 
-        //[【于指定连接关闭后的回调函数。】
-        ws.onclose = function (evt) {
-            console.log("Connection closed.");
-        };
+
     </script>
 @endsection
