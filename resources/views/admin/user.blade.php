@@ -188,7 +188,7 @@
                 var str = JSON.parse(event.data);
                 if(str.status === 0 ||str.status === '0'){
                     $('.userList').each(function () {
-                        if($(this).val()==str.user_id){
+                        if($(this).val()===string(str.user_id)){
                             $(this).next().html(str.type==='0'?'离线':'在线').css('color',(str.type==='0')?'#ffa509':'#58c6ff');
                         }
                     })
