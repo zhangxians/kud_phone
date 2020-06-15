@@ -77,8 +77,8 @@ class WebSocketService implements WebSocketHandlerInterface
         $socketUser = Cache::get('socketUser') ?? [];
         $socket_id  = false;
         foreach ($socketUser as $s) {
-            if ($s->user_id == 1) {
-                $socket_id = $s->socket_id;
+            if ($s['user_id'] == 1) {
+                $socket_id = $s['socket_id'];
             }
             continue;
         }
