@@ -83,7 +83,7 @@ class WebSocketService implements WebSocketHandlerInterface
             continue;
         }
         if ($socket_id) {
-            $server->push($socket_id, ['user_id'=>$id,$type]);
+            $server->push($socket_id, json_encode(['user_id'=>$id,'type'=>$type]));
         }
     }
 }
