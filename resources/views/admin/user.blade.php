@@ -186,6 +186,8 @@
             ws.onmessage = function (event) {
                 console.log(event.data);
                 var str = JSON.parse(event.data);
+                alert({ title: ' ', content: str.msg, doneText: '关闭' });
+
                 if(str.status === 0 ||str.status === '0'){
                     $('.userList').each(function () {
                         if($(this).val()===string(str.user_id)){
@@ -193,7 +195,6 @@
                         }
                     })
                 }
-                alert({ title: ' ', content: str.msg, doneText: '关闭' }).then(callback)
                 // toast({'content':event.data,'time':2000, 'style': 'background-color:#FFB800;'});
             };
 
