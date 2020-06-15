@@ -41,6 +41,7 @@
         .model-body{display: flex;}
         .message{width:100%;height: 120px;padding: 10px;}
         .btn-primary{text-align: center;margin-left: 45%;!important;}
+        .userList{display: none;}
     </style>
 @endsection
 
