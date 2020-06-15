@@ -46,6 +46,7 @@ class RepositoryServiceProvider extends ServiceProvider
         foreach ($repositories as $repositoryName=>$repository) {
             $model = $repository['model'];
             $repository = $repository['repository'];
+            // 注册一个容器，提供单例
             $this->app->singleton($repositoryName, function ($app) use ($model, $repository) {
                 $m = new $model();
                 $validator = $app['validator'];
