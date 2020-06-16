@@ -28,7 +28,7 @@ class IndexController extends Controller
             // 一个新的用户
             $user = Customer::where([['type',0],['is_call',0]])->orderBy('updated_at','asc')->first();
             // 设置当前ip用户未在操作电话
-            Customer::where('ip',$ip)->update(['is_call'=>0]);
+           // Customer::where('ip',$ip)->update(['is_call'=>0]);
 
             if($user){
                 // 将查询到的电话设置为操作中
