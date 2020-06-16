@@ -29,7 +29,7 @@
                    if(resData.code===0){
                        var _html = '';
                        resData.data.forEach(it=>{
-                            _html+='<span>'+it.name+' : <span style="color:red;">'+it.value+'</span></span>';
+                            _html+='<span>'+it.name+' : <a href="/customer/list?type='+it.type+'" style="color:red;">'+it.value+'</a></span>';
                        });
                        $('.content').html(_html);
                        var myChart = echarts.init(document.getElementById('main'));

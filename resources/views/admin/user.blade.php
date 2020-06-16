@@ -31,6 +31,31 @@
             </div>
         </div>
     </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="UserEditorModal" tabindex="-1" role="dialog" aria-labelledby="UserEditorModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="UserEditorModalLabel">用户编辑</h4>
+                </div>
+                <div class="modal-body">
+                    id
+                    <input disabled="disabled" class="editId editUserInput">
+                    名称
+                    <input class="editUserName editUserInput">
+                    密码
+                    <input class="editPassword editUserInput">
+                    <button type="button" onclick="editUser()" class="btn btn-primary">修改</button>
+                </div>
+                {{--<div class="modal-footer">--}}
+                    {{--<button type="button" class="btn btn-default" data-dismiss="modal">关 闭</button>--}}
+                {{--</div>--}}
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('style')
@@ -42,6 +67,8 @@
         .message{width:100%;height: 120px;padding: 10px;}
         .btn-primary{text-align: center;margin-left: 45%;!important;}
         .userList{display: none;}
+
+        .editUserInput{width: 100%;height:40px; padding: 10px;margin:5px;margin-bottom: 20px;}
     </style>
 @endsection
 
@@ -69,7 +96,7 @@
 
                             var _html = '<tr>' +
                                 '<td> 账号：'+it.username+
-                                '<br> 今日已拨：<span style="color:red;">'+it.customer_count+'</span>'+
+                                '<br> 今日已拨：<a href="/customer/list?user_id='+it.id+'&isAll=1" style="color:red;">'+it.customer_count+'</a>'+
                                 '<br>状态：'+(it.status==0?'<span style="color:#06ad0c;">正常</span>':'<span style="color:red;">禁用中</span>')+
                                 '<br>是否在线：<input class="userList" value="'+it.id+'">'+((it.online!=1&&it.username!='sadmin')?'<span style="color:#ffa509;">离线</span>':'<span style="color:#58c6ff;">在线</span>')+
                                 '<br>最后登录ip：'+it.ip+
@@ -77,9 +104,11 @@
                                 '</td>'
                                 +
                                 '<td>' +
-                                '<button style="margin:auto;" class="changeStatus" data-status="'+it.status+'" data-id="'+it.id+'">'+(it.status==0?'禁用':'启用')+'</button>' +
-                                '<br><br>' +
-                                '<button style="margin:auto;" class="setMessage" data-status="'+it.online+'" data-id="'+it.id+'">发消息</button>' +
+                                '<button style="margin-top:8px;" class="changeStatus" data-status="'+it.status+'" data-id="'+it.id+'">'+(it.status==0?'禁用':'启用')+'</button>' +
+                                '<br>' +
+                                '<button style="margin-top:8px;" class="userEditBtn" data-name="'+it.username+'" data-id="'+it.id+'">编辑</button>' +
+                                '<br>' +
+                                '<button style="margin-top:8px;" class="setMessage" data-status="'+it.online+'" data-id="'+it.id+'">发消息</button>' +
                                 '</td>' +
                                 '</tr>';
 
@@ -123,8 +152,6 @@
                 }
             });
 
-            console.log();
-            console.log();
         });
 
 
@@ -138,7 +165,42 @@
 
         });
 
+        $(document).delegate(".userEditBtn","click",function () {
+            $('.editId').val($(this).attr('data-id'));
+            $('.editUserName').val($(this).attr('data-name'));
+            $('#UserEditorModal').modal({})
+        });
 
+
+        /**
+         * 修改user
+         */
+       function editUser(){
+           $.ajax({
+               url:'/user/edit',
+               type:'post',
+               data:{
+                   id:$('.editId').val(),
+                   name:$('.editUserName').val(),
+                   password:$('.editPassword').val(),
+                   _token:$('#_token').val(),
+               },
+               success: function (resData) {
+                   toast({'content':resData.msg,'time':2000});
+                   $('#UserEditorModal').modal('hide')
+               },
+               error: function(e) {
+                   $('#UserEditorModal').modal('hide')
+
+                   toast({'content':'操作失败！','time':2000});
+               }
+           });
+        }
+
+
+        /**
+         * 发送message
+         */
        function setMessage(){
            $.ajax({
                url:'/user/set/message',
@@ -208,6 +270,8 @@
                 console.log("Connection closed.");
             };
         }
+
+
 
 
     </script>

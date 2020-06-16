@@ -23,10 +23,11 @@ Route::post('/update', 'HomeIndex\IndexController@updateIndex')->middleware('aut
 
 Route::group(['middleware' => ['auth','Admin']], function () {
     // 用户管理
-    Route::get('/user', 'Admin\IndexController@user');
-    Route::get('/user/page/list', 'Admin\IndexController@userPagelist');
-    Route::put('/user', 'Admin\IndexController@userUpdate');
-    Route::post('/user/set/message', 'Admin\IndexController@setMessage');
+    Route::get('/user', 'Admin\UserController@user');
+    Route::get('/user/page/list', 'Admin\UserController@userPagelist');
+    Route::put('/user', 'Admin\UserController@userUpdate');
+    Route::post('/user/set/message', 'Admin\UserController@setMessage');
+    Route::post('/user/edit', 'Admin\UserController@userEdit');
 
     //
     Route::get('/ip', 'Admin\IndexController@tbIp');
@@ -37,5 +38,6 @@ Route::group(['middleware' => ['auth','Admin']], function () {
     Route::get('/customer', 'Admin\IndexController@customer');
     Route::get('/customer/page/list', 'Admin\IndexController@customerPageList');
     Route::put('/customer', 'Admin\IndexController@customerUpdate');
+    Route::get('/customer/list', 'Admin\IndexController@customerList');
 
 });
