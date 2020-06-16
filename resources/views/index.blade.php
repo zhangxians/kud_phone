@@ -150,7 +150,6 @@
         console.log(event.data);
         var str = JSON.parse(event.data);
         alert({ title: ' ', content: str.msg, doneText: '关闭' }).then(callback)
-        alert({ title: ' ', content: event.data, doneText: '关闭' }).then(callback)
        // toast({'content':event.data,'time':2000, 'style': 'background-color:#FFB800;'});
     };
 
