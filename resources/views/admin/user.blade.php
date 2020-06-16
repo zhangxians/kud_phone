@@ -248,7 +248,6 @@
             ws.onmessage = function (event) {
                 console.log(event.data);
                 var str = JSON.parse(event.data);
-                alert({ title: ' ', content: str.msg, doneText: '关闭' });
 
                 if(str.status === 1 ||str.status === '1'){
                     $('.userList').each(function () {
@@ -260,6 +259,8 @@
                             $(this).parent().next().find('.setMessage').eq(0).attr('data-status',str.type===1?'0':'1');
                         }
                     })
+                }else {
+                    alert({ title: ' ', content: str.msg, doneText: '关闭' });
                 }
                 // toast({'content':event.data,'time':2000, 'style': 'background-color:#FFB800;'});
             };
