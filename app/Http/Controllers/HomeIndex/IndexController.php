@@ -17,9 +17,10 @@ class IndexController extends Controller
     public function index(Request $request){
         $ip = $this->getIp();
 
+        $AuthUser = Auth::user();
         $ti = time();
         // 获取当前用户正在操作的用户
-        $cUser =  Customer::where([['ip',$ip],['is_call',1]])->first();
+        $cUser =  Customer::where([['ip',$ip],['is_call',1],['user_id',$AuthUser->id]])->first();
         // 如果有
         if($cUser){
             $user = $cUser->toArray();
@@ -33,6 +34,7 @@ class IndexController extends Controller
                 // 将查询到的电话设置为操作中
                 $user->is_call = 1;
                 $user->ip = $ip;
+                $user->user_id = $AuthUser->id;
                 $user->save();
                 $user = $user->toArray();
             }else{
