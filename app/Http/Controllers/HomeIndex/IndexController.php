@@ -8,6 +8,7 @@ use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class IndexController extends Controller
 {
@@ -28,7 +29,7 @@ class IndexController extends Controller
             // 一个新的用户
           //  $user = Customer::where([['type',0],['is_call',0]])->orderBy('address','asc')->first();
             $user = Customer::where([['type',0],['is_call',0]])->orderBy('address','asc')->limit(50)->get();
-            dd($user);
+            Log::info($user);
             // 设置当前ip用户未在操作电话
            // Customer::where('ip',$ip)->update(['is_call'=>0]);
 
