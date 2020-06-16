@@ -96,8 +96,8 @@
         console.log(type)
         let t1 =  parseInt($('#ti').val());
         let t2 =  parseInt((new Date()).getTime()/1000);
-        if(t1+10 > t2){
-            toast({'content':'间隔时间太短，请在 '+(t1+10-t2)+'秒后再次点击。','time':1000});
+        if(t1+5 > t2){
+            toast({'content':'间隔时间太短，请在 '+(t1+5-t2)+'秒后再次点击。','time':1000});
             return false;
         }
         var _data ={

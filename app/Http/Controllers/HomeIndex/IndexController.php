@@ -58,8 +58,8 @@ class IndexController extends Controller
             return json_fail('请求类型错误');
         }
         $t2 = time();
-        if(($request->t1??$t2)+10 > $t2){
-            return json_fail("间隔时间太短，请在".($request->t1+10-$t2)."秒后再次点击。");
+        if(($request->t1??$t2)+5 > $t2){
+            return json_fail("间隔时间太短，请在".($request->t1+5-$t2)."秒后再次点击。");
         }
         DB::beginTransaction();
         $res = Customer::where('id',$id)->lockForUpdate()
