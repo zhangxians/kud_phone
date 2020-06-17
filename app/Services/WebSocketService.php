@@ -3,6 +3,7 @@
 
 namespace App\Services;
 
+use App\Models\LoginLog;
 use App\Models\User;
 use Hhxsv5\LaravelS\Swoole\WebSocketHandlerInterface;
 use Illuminate\Support\Facades\Cache;
@@ -82,6 +83,13 @@ class WebSocketService implements WebSocketHandlerInterface
             }
             continue;
         }
+
+        $log = new LoginLog();
+        $log->user_id = $id;
+        $log->type = $type; 
+        $log->t_date = date('Y-m-d H:i:s');
+        $log->save();
+
         $msg = $type?'退出登录':'登录';
         if ($socket_id&&$id!=1) {
             $server->push($socket_id, json_encode(['user_id'=>$id,'type'=>$type,'msg'=>"用户 {$id} 已经{$msg}了",'status'=>1]));

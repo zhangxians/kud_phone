@@ -28,7 +28,7 @@ class IndexController extends Controller
         $user_id = $request->user_id??false;
         $type    = $request->type??false;
         $isAll   = $request->isAll??false;
-        $users = Customer::where('type',$type);
+        $users = Customer::where('type',$type)->with('user');
         if($user_id){
             $users=$users->where('user_id',$user_id);
             if($isAll){

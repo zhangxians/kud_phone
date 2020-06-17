@@ -24,8 +24,8 @@
                         <br>
                        地址： {{$u->address??''}}<br>
                        套餐： {{$u->package??''}}<br>
-                       ip： {{$u->ip??''}}<br>
-                       user_id： {{$u->user_id }}<br>
+                       {{--ip： {{$u->ip??''}}<br>--}}
+                       操作用户： {{$u->user->username??'' }}<br>
                        最后操作时间： {{$u->updated_at }}<br>
                     </td>
                 </tr>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Exceptions\DataNotException;
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
+use App\Models\LoginLog;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -19,7 +20,7 @@ class UserController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function user(){
-        return view('admin.user');
+        return view('admin.user.user');
     }
 
 
@@ -112,5 +113,25 @@ class UserController extends Controller
 
     }
 
+
+    /**
+     * 登录记录
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function loginLog(Request $request){
+        $user_id = $request->user_id??0;
+        $logs = LoginLog::where('user_id',$user_id)->get()->groupBy('t_date','id');
+        $logs = array_keys($logs->toArray()??[]);
+        return view('admin.user.log',compact('logs'));
+    }
+
+
+    public function loginLogList(Request $request){
+        $user_id = $request->user_id??0;
+        $date = $request->date??date('Y-m-d');
+        $logs = LoginLog::where([['user_id',$user_id],['t_date',$date]])->get();
+
+    }
 
 }

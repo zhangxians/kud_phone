@@ -29,6 +29,10 @@ Route::group(['middleware' => ['auth','Admin']], function () {
     Route::post('/user/set/message', 'Admin\UserController@setMessage');
     Route::post('/user/edit', 'Admin\UserController@userEdit');
 
+    // 登录日志
+    Route::get('/login/log', 'Admin\UserController@loginLog');
+
+
     //
     Route::get('/ip', 'Admin\IndexController@tbIp');
     Route::get('/ip/page/list', 'Admin\IndexController@ipPagelist');
