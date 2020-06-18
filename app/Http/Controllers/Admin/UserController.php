@@ -122,7 +122,7 @@ class UserController extends Controller
      */
     public function loginLog(Request $request){
         $user_id = $request->user_id??0;
-        $logs = LoginLog::where('user_id',$user_id)->get()->groupBy('t_date','id');
+        $logs = LoginLog::where('user_id',$user_id)->orderBy('t_date','desc')->get()->groupBy('t_date','id');
         $logs = array_keys($logs->toArray()??[]);
         return view('admin.user.log',compact('logs'));
     }
