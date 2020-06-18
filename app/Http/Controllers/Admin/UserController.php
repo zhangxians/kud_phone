@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use App\Models\LoginLog;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -127,11 +128,23 @@ class UserController extends Controller
     }
 
 
+    // 在线日志详情
     public function loginLogList(Request $request){
+        $x = 10; // 间隔多久时间不显示; 单位 分
         $user_id = $request->user_id??0;
         $date = $request->date??date('Y-m-d');
-        $logs = LoginLog::where([['user_id',$user_id],['t_date',$date]])->get();
-
+        $logs = LoginLog::where([['user_id',$user_id],['t_date',$date]])->orderBy('created_at','desc')->get()->toArray()??[];
+        for($i=0; $i<count($logs);$i++){
+            if($logs[$i]['type']==1&&$i>0){
+                $carbon  = Carbon::parse($logs[$i-1]['created_at']);
+                $carbon2 = Carbon::parse($logs[$i]['created_at']);
+               if($carbon2->diffInSeconds ($carbon, true) < $x*60){
+                   unset($logs[$i]);
+                   unset($logs[$i-1]);
+               }
+           }
+        }
+        return view('admin.user.loglist',compact('logs'));
     }
 
 }

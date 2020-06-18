@@ -95,7 +95,7 @@
 
 
                             var _html = '<tr>' +
-                                '<td> 账号：<a href="/">'+it.username+'</a>'+
+                                '<td> 账号：<a href="/login/log?user_id='+it.id+'">'+it.username+'</a>'+
                                 '<br><br> 今日已拨：<a href="/customer/list?user_id='+it.id+'&isAll=1" style="color:red;">'+it.customer_count+'</a>'+
                                 '<br>状态：'+(it.status==0?'<span style="color:#06ad0c;">正常</span>':'<span style="color:red;">禁用中</span>')+
                                 '<br>是否在线：<input class="userList" value="'+it.id+'">'+((it.online!=1&&it.username!='sadmin')?'<span style="color:#ffa509;">离线</span>':'<span style="color:#58c6ff;">在线</span>')+

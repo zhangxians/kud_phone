@@ -31,6 +31,7 @@ Route::group(['middleware' => ['auth','Admin']], function () {
 
     // 登录日志
     Route::get('/login/log', 'Admin\UserController@loginLog');
+    Route::get('/login/log/list', 'Admin\UserController@loginLogList');
 
 
     //
