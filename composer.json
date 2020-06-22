@@ -14,6 +14,7 @@
         "hhxsv5/laravel-s": "^3.7",
         "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0",
+        "maatwebsite/excel": "^3.1",
         "overtrue/laravel-pinyin": "~3.0",
         "predis/predis": "^1.1",
         "zhangx/dzlle": "^1.0"

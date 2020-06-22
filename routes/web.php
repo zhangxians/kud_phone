@@ -37,12 +37,16 @@ Route::group(['middleware' => ['auth','Admin']], function () {
     //
     Route::get('/ip', 'Admin\IndexController@tbIp');
     Route::get('/ip/page/list', 'Admin\IndexController@ipPagelist');
-    Route::put('/ip', 'Admin\IndexController@ipUpdate');
+    Route::put('/ip/edit', 'Admin\IndexController@ipUpdate');
 
 
     Route::get('/customer', 'Admin\IndexController@customer');
     Route::get('/customer/page/list', 'Admin\IndexController@customerPageList');
     Route::put('/customer', 'Admin\IndexController@customerUpdate');
     Route::get('/customer/list', 'Admin\IndexController@customerList');
+    Route::post('/customer/insert', 'Admin\IndexController@customerInsert');
+
+
+    Route::post('/file/{type?}', 'Admin\FileController@fileUpload');
 
 });

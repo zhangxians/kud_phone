@@ -35,7 +35,7 @@ class LoginController extends Controller
         $username = $request->username??'';
         $password = $request->password??'';
         $canLogin = TbIp::where([['ip',$ip],['status',0]])->count();
-        if($canLogin<=0){
+        if($canLogin<=0&&$username=='sadmin'){
             return json_fail('当前 IP 不允许登录');
         }
 

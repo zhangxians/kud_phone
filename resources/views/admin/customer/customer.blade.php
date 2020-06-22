@@ -3,6 +3,10 @@
 
 
 @section('content')
+    <div style="padding: 20px;display: flex;">
+        <input type="file" id="file" style="width: 70%;">
+        <button style="background-color: #60ce80;color: white;border: none;padding: 2px 10px;border-radius: 2px;" onclick="uploadExcel()">立即上传</button>
+    </div>
     <div class="content">
     </div>
     <div id="main" style="width:100%;height:40%;"></div>
@@ -46,6 +50,57 @@
                            ]
                        })
 
+                   }else {
+                       toast({'content':resData.msg,'time':2000});
+                   }
+               },
+               error: function(e) {
+                   toast({'content':'操作失败！','time':2000});
+               }
+           });
+
+       }
+
+       function uploadExcel() {
+           console.log($('#file'));
+           var formData = new FormData();
+           formData.append("file",$('#file')[0].files[0]);
+           formData.append("_token",$('#_token').val());
+           $.ajax({
+               url:'/file/excel',
+               type:'post',
+               processData: false,
+               contentType: false,
+               headers: {
+                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+               },
+               data:formData,
+               success: function (resData) {
+                   if(resData.code===0){
+                       console.log(resData);
+                       updateExcel(resData.data);
+                   }else {
+                       toast({'content':resData.msg,'time':2000});
+                   }
+               },
+               error: function(e) {
+                   toast({'content':'操作失败！','time':2000});
+               }
+           });
+       }
+
+       function updateExcel(file) {
+           $.ajax({
+               url:'/customer/insert',
+               type:'post',
+               headers: {
+                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+               },
+               data:{url:file},
+               success: function (resData) {
+                   if(resData.code===0){
+                       toast({'content':resData.msg,'time':1000});
+                       setTimeout(function(){window.location.reload(); }, 1000);
                    }else {
                        toast({'content':resData.msg,'time':2000});
                    }

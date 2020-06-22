@@ -15,6 +15,11 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
 
+    'fileUpload'=>[
+        'filePathHead'=>storage_path('app/public/'),
+        'excel'=>'/excel/',
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment
@@ -181,6 +186,7 @@ return [
 
 
         Hhxsv5\LaravelS\Illuminate\LaravelSServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
     ],
 
@@ -233,7 +239,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
-
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ],
 
 ];
