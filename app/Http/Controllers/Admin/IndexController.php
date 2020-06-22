@@ -82,12 +82,23 @@ class IndexController extends Controller
             $c_d['package'] = $d[5];
             $c_d['desc'] = $d[6]??'';
 
-            $c_d['phone1'] = $d[7]??'';
-            $c_d['phone2'] = $d[8]??'';
-            $c_d['phone3'] = $d[9]??'';
-            $c_d['phone4'] = $d[10]??'';
-            $c_d['phone5'] = $d[11]??'';
-
+            $phone = str_replace('手机:','',$d[7]??'');
+            $phones = explode(',',$phone);
+            $i = 1;
+            $c_d['phone1'] = '';
+            $c_d['phone2'] = '';
+            $c_d['phone3'] = '';
+            $c_d['phone4'] = '';
+            $c_d['phone5'] = '';
+            foreach ($phones as $p){
+                if(trim($p)){
+                    $c_d["phone{$i}"] = trim($p);
+                    $i++;
+                    if($i>5){
+                        break;
+                    }
+                }
+            }
             $c_d['type'] = 0;
             $c_d['created_at'] = date('Y-m-d h:i:s');
             $c_d['updated_at'] = date('Y-m-d h:i:s');
