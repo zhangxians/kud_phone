@@ -37,7 +37,7 @@ class IndexController extends Controller
         if($user_id){
             $users=$users->where('user_id',$user_id);
             if($isAll){
-                $users=$users->where('updated_at','>',date('Y-m-d 00:00:00'));
+                $users=Customer::where('updated_at','>',date('Y-m-d 00:00:00'))->where('user_id',$user_id);
             }
         }
         $users = $users->paginate(10);
