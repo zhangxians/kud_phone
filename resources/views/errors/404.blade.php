@@ -14,7 +14,7 @@
         <h1>Not Found (404)</h1> {{ $message ?? '操作错误！'}}
         <div class="not-found--links"> 您可以访问一下链接:
             <ul>
-                <li><a href="/">主页</a></li>
+                <li><a href="/logout">退出登录</a></li>
             </ul>
         </div>
     </div>
