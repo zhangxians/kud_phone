@@ -133,7 +133,8 @@ class UserController extends Controller
         $x = 10; // 间隔多久时间不显示; 单位 分
         $user_id = $request->user_id??0;
         $date = $request->date??date('Y-m-d');
-        $logs = LoginLog::where([['user_id',$user_id],['t_date',$date]])->orderBy(['created_at','type'],['desc','asc'])->get()->toArray()??[];
+        $logs = LoginLog::where([['user_id',$user_id],['t_date',$date]])->orderBy('created_at','desc')
+                ->orderBy('type','asc')->get()->toArray()??[];
 //        for($i=0; $i<count($logs);$i++){
 //            if($logs[$i]['type']==1&&$i>0){
 //                $carbon  = Carbon::parse($logs[$i-1]['created_at']);
