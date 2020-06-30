@@ -141,6 +141,7 @@ class UserController extends Controller
                if($carbon2->diffInSeconds ($carbon, true) < $x*60){
                    unset($logs[$i]);
                    unset($logs[$i+1]);
+                   $i++;
                }
            }
         }
