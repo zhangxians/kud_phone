@@ -135,12 +135,12 @@ class UserController extends Controller
         $date = $request->date??date('Y-m-d');
         $logs = LoginLog::where([['user_id',$user_id],['t_date',$date]])->orderBy('created_at','desc')->get()->toArray()??[];
         for($i=0; $i<count($logs);$i++){
-            if($logs[$i]['type']==1&&$i>0){
-                $carbon  = Carbon::parse($logs[$i-1]['created_at']);
-                $carbon2 = Carbon::parse($logs[$i]['created_at']);
+            if($logs[$i]['type']==1&&$i<count($logs)){
+                $carbon  = Carbon::parse($logs[$i]['created_at']);
+                $carbon2 = Carbon::parse($logs[$i+1]['created_at']);
                if($carbon2->diffInSeconds ($carbon, true) < $x*60){
                    unset($logs[$i]);
-                   unset($logs[$i-1]);
+                   unset($logs[$i+1]);
                }
            }
         }
