@@ -18,7 +18,18 @@ Route::get('/logout', 'HomeIndex\LoginController@logout')->middleware('auth');
 
 Route::get('/', 'HomeIndex\IndexController@index')->middleware(['auth','Outbound']);
 
-Route::get('/sales', 'HomeIndex\SalesController@index')->middleware(['auth']);
+
+
+Route::group(['middleware' => ['auth']], function () {
+
+    Route::get('/sales', 'HomeIndex\SalesController@index');
+    Route::get('/order', 'HomeIndex\SalesController@order');
+    Route::post('/order/receiving', 'HomeIndex\SalesController@receiving');
+    Route::post('/order/update', 'HomeIndex\SalesController@update');
+
+    Route::get('/order/list', 'HomeIndex\SalesController@orderList');
+
+});
 
 // 更新数据
 Route::post('/update', 'HomeIndex\IndexController@updateIndex')->middleware('auth');

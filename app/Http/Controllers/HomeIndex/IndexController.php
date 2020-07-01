@@ -5,6 +5,7 @@ namespace App\Http\Controllers\HomeIndex;
 use App\Exceptions\DataNotException;
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -65,11 +66,34 @@ class IndexController extends Controller
         $res = Customer::where('id',$id)->lockForUpdate()
             ->update(['type'=>$type,'desc'=>$desc,'ip'=> $ip,'is_call'=>0,'user_id'=>$user->id]);
         DB::commit();
-        if($res){
+        $this->addOrder($id);
+        if(true){
             return json_success('操作成功');
         }else{
             return json_fail('操作失败');
         }
 
+    }
+
+    protected function addOrder($customer_id){
+        $customer = Customer::find($customer_id);
+        if(!$customer){
+            return false;
+        }
+        unset($customer['id']);
+        $order = new Order();
+        $order->name = $customer->name;
+        $order->phone1 = $customer->phone1;
+        $order->phone2 = $customer->phone2;
+        $order->phone3 = $customer->phone3;
+        $order->phone4 = $customer->phone4;
+        $order->phone5 = $customer->phone5;
+        $order->address = $customer->address;
+        $order->package = $customer->package;
+        $order->ip = $customer->ip;
+        $order->user_id = 0;
+        $order->desc = $customer->desc;
+        $order->type = 0;
+        $order->save();
     }
 }
