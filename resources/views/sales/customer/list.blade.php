@@ -25,13 +25,12 @@
                         <br>
                        地址： {{$u->address??''}}<br>
                        套餐： {{$u->package??''}}<br>
+                        备注： {{$u->desc??''}}<br>
                        操作用户： {{$u->user->username??'' }}<br>
                        最后操作时间： {{$u->updated_at }}<br>
                     </td>
                     <td>
-
-                        @if ($u->type==0) <span style="color: red;">未处理</span> @endif
-                        <br></br>备注： {{$u->desc??''}}<br>
+                        <button onclick="receivingOrder('{{$u->id}}')">接单</button>
                     </td>
                 </tr>
             @endforeach
