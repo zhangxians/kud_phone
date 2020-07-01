@@ -119,7 +119,7 @@ class UserController extends Controller
         $password = $request->password??false;
         $type = $request->type??1;
 
-        try {
+//        try {
             $sameNameUser = User::where('username',$name)->first();
             if($sameNameUser){
                 return json_fail('该用户名已经被使用');
@@ -137,9 +137,9 @@ class UserController extends Controller
 
             }
             return $res ?json_success('添加成功'):json_fail('添加失败');
-        } catch (\Exception $exception) {
-            return json_fail();
-        }
+//        } catch (\Exception $exception) {
+//            return json_fail();
+//        }
     }
 
 
