@@ -24,6 +24,8 @@ class CreateTbUserTable extends Migration
             $table->integer('status')->comment('状态 0 正常')->default(0);
             $table->string('desc',500)->comment('描述')->nullable();
             $table->string('token',255)->comment('token')->nullable();
+            $table->integer('type')->comment('1为外呼 2为业务 3为管理员')->default(1);
+
             $table->timestamps();
             $table->softDeletes();
 

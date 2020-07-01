@@ -34,8 +34,9 @@ class LoginController extends Controller
         $ip = $this->getIp();
         $username = $request->username??'';
         $password = $request->password??'';
+        $type = $request->type??1;
         $canLogin = TbIp::where([['ip',$ip],['status',0]])->count();
-        if($canLogin<=0&&$username!='sadmin'){
+        if($canLogin<=0&&($username!='sadmin' || $type==1)){
             return json_fail('当前 IP 不允许登录');
         }
 
@@ -46,6 +47,8 @@ class LoginController extends Controller
             User::where('id',Auth::user()->id)->update(['ip'=>$ip,'token'=>$token]);
             if($username=='sadmin'){
                 return json_success('登录成功',['token'=>$token,'url'=>'/customer']);
+            }elseif(Auth::user()->type == 2){
+                return json_success('登录成功',['token'=>$token,'url'=>'/sales']);
             }else{
                 return json_success('登录成功',['token'=>$token,'url'=>'/']);
             }

@@ -114,6 +114,34 @@ class UserController extends Controller
 
     }
 
+    public function userCreate(Request $request){
+        $name = $request->name??false;
+        $password = $request->password??false;
+        $type = $request->type??1;
+
+        try {
+            $sameNameUser = User::where('username',$name)->first();
+            if($sameNameUser){
+                return json_fail('该用户名已经被使用');
+            }
+
+            $res = false;
+            if($name&&$password){
+                $user  = new User();
+                $user->username = $name;
+                $user->password = bcrypt($password);
+                $user->ip =$this->getIp();
+                $user->status = 0;
+                $user->type = $type;
+                $res = $user->save();
+
+            }
+            return $res ?json_success('添加成功'):json_fail('添加失败');
+        } catch (\Exception $exception) {
+            return json_fail();
+        }
+    }
+
 
     /**
      * 登录记录

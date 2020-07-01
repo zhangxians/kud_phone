@@ -6,7 +6,7 @@
     <div class="content">
         <table class="table table-bordered" id="userTable">
             <tr class="success">
-                <td>基本信息</td>
+                <td>基本信息<button class="userAddBtn">新增用户</button></td>
                 <td>操作</td>
             </tr>
 
@@ -49,6 +49,30 @@
                     密码
                     <input class="editPassword editUserInput">
                     <button type="button" onclick="editUser()" class="btn btn-primary">修改</button>
+                </div>
+                {{--<div class="modal-footer">--}}
+                    {{--<button type="button" class="btn btn-default" data-dismiss="modal">关 闭</button>--}}
+                {{--</div>--}}
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="UserAddModal" tabindex="-1" role="dialog" aria-labelledby="UserEditorModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="UserEditorModalLabel">新增用户</h4>
+                </div>
+                <div class="modal-body">
+                    名称
+                    <input class="addUserName editUserInput">
+                    密码
+                    <input class="addPassword editUserInput">
+                    类型 1为外呼 2为业务员
+                    <input class="addType editUserInput">
+                    <button type="button" onclick="addUser()" class="btn btn-primary">创建</button>
                 </div>
                 {{--<div class="modal-footer">--}}
                     {{--<button type="button" class="btn btn-default" data-dismiss="modal">关 闭</button>--}}
@@ -191,6 +215,35 @@
                },
                error: function(e) {
                    $('#UserEditorModal').modal('hide')
+
+                   toast({'content':'操作失败！','time':2000});
+               }
+           });
+        }
+
+        $(document).delegate(".userAddBtn","click",function () {
+            $('#UserAddModal').modal({})
+        });
+        /**
+         * 新增user
+         */
+       function addUser(){
+           $.ajax({
+               url:'/user/create',
+               type:'post',
+               data:{
+                   name:$('.addUserName').val(),
+                   password:$('.addPassword').val(),
+                   type:$('.addType').val(),
+                   _token:$('#_token').val(),
+               },
+               success: function (resData) {
+                   toast({'content':resData.msg,'time':2000});
+                   $('#UserAddModal').modal('hide')
+                   setTimeout(function(){window.location.reload(); }, 2000);
+               },
+               error: function(e) {
+                   $('#UserAddModal').modal('hide')
 
                    toast({'content':'操作失败！','time':2000});
                }

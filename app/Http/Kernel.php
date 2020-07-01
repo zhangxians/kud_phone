@@ -62,6 +62,7 @@ class Kernel extends HttpKernel
 
 
         'Admin' => \App\Http\Middleware\Admin::class,
+        'Outbound' => \App\Http\Middleware\Outbound::class,
 
 
     ];

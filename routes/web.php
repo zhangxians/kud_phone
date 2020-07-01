@@ -16,7 +16,10 @@ Route::get('/login', 'HomeIndex\LoginController@login')->name('login');
 Route::post('/login', 'HomeIndex\LoginController@loginin');
 Route::get('/logout', 'HomeIndex\LoginController@logout')->middleware('auth');
 
-Route::get('/', 'HomeIndex\IndexController@index')->middleware('auth');
+Route::get('/', 'HomeIndex\IndexController@index')->middleware(['auth','Outbound']);
+
+Route::get('/sales', 'HomeIndex\SalesController@index')->middleware(['auth']);
+
 // 更新数据
 Route::post('/update', 'HomeIndex\IndexController@updateIndex')->middleware('auth');
 
@@ -28,6 +31,7 @@ Route::group(['middleware' => ['auth','Admin']], function () {
     Route::put('/user', 'Admin\UserController@userUpdate');
     Route::post('/user/set/message', 'Admin\UserController@setMessage');
     Route::post('/user/edit', 'Admin\UserController@userEdit');
+    Route::post('/user/create', 'Admin\UserController@userCreate');
 
     // 登录日志
     Route::get('/login/log', 'Admin\UserController@loginLog');
