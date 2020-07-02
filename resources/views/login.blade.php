@@ -55,6 +55,7 @@
         var _data ={
             username:$('#username').val(),
             password:$('#password').val(),
+            type:3,
             _token:$('#_token').val(),
         };
         $.ajax({
