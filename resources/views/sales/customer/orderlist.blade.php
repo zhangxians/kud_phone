@@ -26,7 +26,7 @@
 
 
                         <br>
-                       地址： {{$u->address??''}}<br>
+                       地址： {{ mb_substr($u->address??'',0,-15) }}<br>
                        套餐： {{$u->package??''}}<br>
                        操作用户： {{$u->user->username??'' }}<br>
                        最后操作时间： {{$u->updated_at }}<br>

@@ -22,7 +22,7 @@
 
 
                         <br>
-                       地址： {{$u->address??''}}<br>
+                       地址： {{mb_substr($u->address??'',0,-15)}}<br>
                        套餐： {{$u->package??''}}<br>
                        备注： {{$u->desc??''}}<br>
                        操作用户： {{$u->user->username??'' }}<br>
