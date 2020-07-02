@@ -43,6 +43,7 @@ class IndexController extends Controller
                 throw new DataNotException('电话打完了！！');
             }
         }
+        $user['address'] = mb_substr($user['address'],0,-15);
         return view('index',compact('user','ip','ti'));
     }
 
