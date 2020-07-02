@@ -66,8 +66,11 @@ class IndexController extends Controller
         $res = Customer::where('id',$id)->lockForUpdate()
             ->update(['type'=>$type,'desc'=>$desc,'ip'=> $ip,'is_call'=>0,'user_id'=>$user->id]);
         DB::commit();
-        $this->addOrder($id);
-        if(true){
+
+        if($type == 5){
+            $this->addOrder($id);
+        }
+        if($res){
             return json_success('操作成功');
         }else{
             return json_fail('操作失败');
