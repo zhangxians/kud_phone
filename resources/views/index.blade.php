@@ -107,6 +107,10 @@
             _token:$('#_token').val(),
             t1:t1
         };
+        if((type==4||type==4)&&_data.desc.length<=0){
+            toast({'content':'请在备注一栏写上预约时间等详细信息','time':3000});
+            return false;
+        }
         $.ajax({
             url:'/update',
             type:'post',
