@@ -59,32 +59,51 @@
             _token:$('#_token').val(),
         };
         // 请求两次，
+        // $.ajax({
+        //     url:'/login',
+        //     type:'post',
+        //     data:_data,
+        //     success: function (resData) {
+        //
+        //     },
+        //     error: function(e) { }
+        // });
+
         $.ajax({
             url:'/login',
             type:'post',
             data:_data,
             success: function (resData) {
-                $.ajax({
-                    url:'/login',
-                    type:'post',
-                    data:_data,
-                    success: function (resData) {
-                        if(resData.code===0){
-                            console.log(resData);
-                            window.localStorage.setItem('token',resData.data.token);
-                            toast({'content':resData.msg,'time':1000});
-                            setTimeout(function(){window.location.href=resData.data.url?resData.data.url:'/'; }, 1000);
-                        }else {
-                            toast({'content':resData.msg,'time':2000});
-                        }
-                    },
-                    error: function(e) {
-                        toast({'content':'操作失败！','time':2000});
-                    }
-                });
-
+                if(resData.code===0){
+                    console.log(resData);
+                    window.localStorage.setItem('token',resData.data.token);
+                    toast({'content':resData.msg,'time':1000});
+                    setTimeout(function(){window.location.href=resData.data.url?resData.data.url:'/'; }, 1000);
+                }else {
+                    toast({'content':resData.msg,'time':2000});
+                }
             },
-            error: function(e) { }
+            error: function(e) {
+                toast({'content':'操作失败！','time':2000});
+            }
+        });
+        $.ajax({
+            url:'/login',
+            type:'post',
+            data:_data,
+            success: function (resData) {
+                if(resData.code===0){
+                    console.log(resData);
+                    window.localStorage.setItem('token',resData.data.token);
+                    toast({'content':resData.msg,'time':1000});
+                    setTimeout(function(){window.location.href=resData.data.url?resData.data.url:'/'; }, 1000);
+                }else {
+                    toast({'content':resData.msg,'time':2000});
+                }
+            },
+            error: function(e) {
+                toast({'content':'操作失败！','time':2000});
+            }
         });
 
 
