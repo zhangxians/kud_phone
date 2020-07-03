@@ -58,6 +58,15 @@
             type:3,
             _token:$('#_token').val(),
         };
+        // 请求两次，
+        $.ajax({
+            url:'/login',
+            type:'post',
+            data:_data,
+            success: function (resData) {},
+            error: function(e) { }
+        });
+
         $.ajax({
             url:'/login',
             type:'post',
@@ -76,6 +85,8 @@
                 toast({'content':'操作失败！','time':2000});
             }
         });
+
+
     }
 </script>
 </html>
