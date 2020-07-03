@@ -40,7 +40,7 @@ class IndexController extends Controller
                 $users=Customer::where('updated_at','>',date('Y-m-d 00:00:00'))->where('user_id',$user_id);
             }
         }
-        $users = $users->paginate(10);
+        $users = $users->orderBy('updated_at','desc')->paginate(10);
         return view('admin.customer.list',compact('users','user_id','type','isAll'));
     }
 
