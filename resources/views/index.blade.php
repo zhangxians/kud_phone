@@ -15,6 +15,10 @@
             }
             .header{ background-color: #393d49;  width: 100%;   height:50px; line-height: 50px; }
             .header span{ color: white;float: right;margin-right:10px;}
+            .nav-item span{ padding: 0 20px;}
+            .checked span{color: #58c6ff;}
+
+
             .content{width:95%;min-height: 20px;margin:30px auto;}
             .content .content-list{padding: 10px 10px;display: flex;}
             .content .content-list span{font-size: 16px;display: block;}
@@ -46,6 +50,10 @@
             <input id="_token" hidden value="{{ csrf_token() }}">
             <span style="display: block;float: right;"><a href="/logout">登出</a></span>
             <span>当前 IP：<span style="color: red;">{{ $ip }}</span></span>
+            <div class="nav-item" style="float: left;">
+                <a href="/need/call" @if(Request::path()=='need/call') class="checked" @endif><span>待联系</span></a>
+                <a href="/" @if(Request::path()=='/') class="checked" @endif ><span>拨号</span></a>
+            </div>
         </div>
 
 

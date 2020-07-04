@@ -17,6 +17,7 @@ Route::post('/login', 'HomeIndex\LoginController@loginin');
 Route::get('/logout', 'HomeIndex\LoginController@logout')->middleware('auth');
 
 Route::get('/', 'HomeIndex\IndexController@index')->middleware(['auth','Outbound']);
+Route::get('/need/call', 'HomeIndex\IndexController@needCall')->middleware(['auth','Outbound']);
 
 
 

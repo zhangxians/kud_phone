@@ -48,6 +48,22 @@ class IndexController extends Controller
     }
 
 
+    /**
+     * 需要回拨号的数据
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function needCall(Request $request){
+        $ip = $this->getIp();
+
+        $user_id = Auth::user()->id;
+        $customer = Customer::where('type',$request->type??4)->with('user');
+        $customer=$customer->where('user_id',$user_id);
+        $users = $customer->orderBy('updated_at','desc')->paginate(10);
+        return view('other',compact('users','ip'));
+    }
+
+
     // 更新数据
     public function updateIndex(Request $request){
         $type = $request->type??false;
@@ -60,9 +76,12 @@ class IndexController extends Controller
             return json_fail('请求类型错误');
         }
         $t2 = time();
-        if(($request->t1??$t2)+5 > $t2){
-            return json_fail("间隔时间太短，请在".($request->t1+5-$t2)."秒后再次点击。");
+        if($request->t1!=1){
+            if(($request->t1??$t2)+5 > $t2){
+                return json_fail("间隔时间太短，请在".($request->t1+5-$t2)."秒后再次点击。");
+            }
         }
+
         DB::beginTransaction();
         $res = Customer::where('id',$id)->lockForUpdate()
             ->update(['type'=>$type,'desc'=>$desc,'ip'=> $ip,'is_call'=>0,'user_id'=>$user->id]);
