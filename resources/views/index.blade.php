@@ -66,6 +66,8 @@
             <div class="content-list">
                 <span class="title">电 话 : </span>
                 <span class="value">
+
+
                    @if(isset($user['phone1'])&&$user['phone1']) <p>{{ $user['phone1'] }} <a href="tel:{{ $user['phone1'] }}">拨号</a></p> @endif
                    @if(isset($user['phone2'])&&$user['phone2']) <p>{{ $user['phone2'] }} <a href="tel:{{ $user['phone2'] }}">拨号</a></p> @endif
                    @if(isset($user['phone3'])&&$user['phone3']) <p>{{ $user['phone3'] }} <a href="tel:{{ $user['phone3'] }}">拨号</a></p> @endif
